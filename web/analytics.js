@@ -1,4 +1,3 @@
-// Replace this with the Measurement ID from your GA4 web data stream (format: G-XXXXXXXXXX).
 const GA_MEASUREMENT_ID = "G-17STZG7BDK";
 const GA_MEASUREMENT_ID_PATTERN = /^G-[A-Z0-9]+$/;
 
