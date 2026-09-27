@@ -26,7 +26,7 @@ p {
 
 .controls {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   align-items: end;
   flex-wrap: wrap;
   margin: 28px 0 20px;
@@ -89,4 +89,52 @@ canvas {
 
 #language-button {
   white-space: nowrap;
+}
+
+input[type="range"] {
+  width: 110px;
+  padding: 0;
+}
+
+output {
+  color: #7cc4ff;
+  font-weight: bold;
+}
+
+.noise-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#noise-number {
+  width: 70px;
+}
+
+.controls > label:not(.noise-control) input {
+  width: 130px;
+}
+
+.simulation-action {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+#simulation-status {
+  color: #7cc4ff;
+  font-weight: bold;
+}
+
+.observation-control {
+  flex-basis: 100%;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.observation-control input {
+  width: 110px;
 }
