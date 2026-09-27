@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universe Transit Simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <main>
+    <div class="top-bar">
+      <div>
+        <h1 data-i18n="title">Universe Transit Simulator</h1>
+        <p data-i18n="subtitle">
+          Simulate the brightness change caused by an exoplanet transit.
+        </p>
+      </div>
+
+      <button id="language-button">中文</button>
+    </div>
+
+    <section class="controls">
+      <label>
+        <span data-i18n="starRadius">Star radius</span>
+        <input id="star-radius" type="number" value="695700" min="1" step="1">
+      </label>
+
+      <label>
+        <span data-i18n="planetRadius">Planet radius</span>
+        <input id="planet-radius" type="number" value="6371" min="1" step="1">
+      </label>
+
+      <button id="simulate-button" data-i18n="simulate">
+        Simulate Transit
+      </button>
+    </section>
+
+    <section id="results"></section>
+
+    <canvas id="light-curve" width="800" height="400"></canvas>
+  </main>
+</body>
+</html>
