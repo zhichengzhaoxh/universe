@@ -3,84 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Universe Transit Simulator</title>
+  <meta name="theme-color" content="#09111f">
+  <title>Universe Explorer</title>
   <link rel="stylesheet" href="style.css">
-  <script src="app.js" defer></script>
+  <script src="home.js" defer></script>
 </head>
 
-<body>
+<body class="home-page">
   <main>
-    <div class="top-bar">
-      <div>
-        <h1 data-i18n="title">Universe Transit Simulator</h1>
-        <p data-i18n="subtitle">
-          Simulate the brightness change caused by an exoplanet transit.
-        </p>
-      </div>
+    <header class="home-header">
+      <a id="home-brand" class="home-brand" href="index.html" aria-label="Universe Explorer home">
+        <span class="brand-symbol" aria-hidden="true">✦</span>
+        <span data-i18n="brand">Universe Explorer</span>
+      </a>
+      <button id="language-button" type="button" aria-label="Change language">中文</button>
+    </header>
 
-      <button id="language-button">中文</button>
-    </div>
-
-    <section class="controls">
-      <label>
-        <span data-i18n="starRadius">Star radius (km)</span>
-        <input id="star-radius" type="number" value="695700" min="1" step="1">
-      </label>
-
-      <label>
-        <span data-i18n="planetRadius">Planet radius (km)</span>
-        <input id="planet-radius" type="number" value="6371" min="1" step="1">
-      </label>
-
-    <label class="noise-control">
-    <span data-i18n="noiseLevel">Observation noise</span>
-
-    <div class="noise-inputs">
-        <input
-        id="noise-level"
-        type="range"
-        value="50"
-        min="0"
-        max="500"
-        step="1"
-        >
-
-        <input
-        id="noise-number"
-        type="number"
-        value="50"
-        min="0"
-        max="500"
-        step="1"
-        >
-
-        <span>ppm</span>
-    </div>
-    </label>
-
-      <div class="simulation-action">
-        <button id="simulate-button" data-i18n="simulate">
-          Simulate Transit
-        </button>
-        <span id="simulation-status" aria-live="polite"></span>
-      </div>
-
-      <label class="observation-control">
-        <span data-i18n="observationCount">Number of observations</span>
-        <input
-          id="observation-count"
-          type="number"
-          value="101"
-          min="2"
-          max="1000"
-          step="1"
-        >
-      </label>
+    <section class="home-hero" aria-labelledby="home-title">
+      <p class="eyebrow" data-i18n="eyebrow">A hands-on journey through astronomy</p>
+      <h1 id="home-title" data-i18n="title">Explore the universe, one idea at a time.</h1>
+      <p class="home-intro" data-i18n="subtitle">
+        Learn astronomy through small, interactive experiences. Choose a module to begin.
+      </p>
     </section>
 
-    <section id="results"></section>
+    <section class="module-section" aria-labelledby="modules-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow" data-i18n="collection">YOUR EXPLORATION TOOLKIT</p>
+          <h2 id="modules-title" data-i18n="modulesTitle">Choose a module</h2>
+        </div>
+        <span class="module-count" data-i18n="moduleCount">02 available · 00 in progress</span>
+      </div>
 
-    <canvas id="light-curve" width="800" height="400"></canvas>
+      <div class="module-grid">
+        <a class="module-card module-card-active" href="solar.html">
+          <div class="module-card-top">
+            <span class="module-icon solar-icon" aria-hidden="true">◎</span>
+            <span class="module-status status-available" data-i18n="available">AVAILABLE</span>
+          </div>
+          <p class="module-number" data-i18n="moduleOne">MODULE 01</p>
+          <h3 data-i18n="solarTitle">Solar System Explorer</h3>
+          <p class="module-description" data-i18n="solarDescription">
+            Explore the planets and compare their sizes, distances from the Sun, and orbital periods.
+          </p>
+          <span class="module-action">
+            <span data-i18n="openSolar">Open explorer</span>
+            <span aria-hidden="true">→</span>
+          </span>
+        </a>
+
+        <a class="module-card module-card-active" href="transit.html">
+          <div class="module-card-top">
+            <span class="module-icon transit-icon" aria-hidden="true">◉</span>
+            <span class="module-status status-available" data-i18n="available">AVAILABLE</span>
+          </div>
+          <p class="module-number" data-i18n="moduleTwo">MODULE 02</p>
+          <h3 data-i18n="transitTitle">Exoplanet Transit Simulator</h3>
+          <p class="module-description" data-i18n="transitDescription">
+            See how a planet passing in front of a star creates a tiny dip in its brightness.
+          </p>
+          <span class="module-action">
+            <span data-i18n="openModule">Open simulator</span>
+            <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="home-footer">
+      <p data-i18n="footer">Curiosity is the beginning of every journey.</p>
+      <a
+        class="image-credit"
+        href="https://images.nasa.gov/details/GSFC_20171208_Archive_e001651"
+        target="_blank"
+        rel="noreferrer"
+        data-i18n="homeImageCredit"
+      >Background image: NASA, ESA, and the Hubble XDF team.</a>
+    </footer>
   </main>
 </body>
 </html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09111f">
+  <title>Solar System Explorer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="solar.js" defer></script>
+</head>
+
+<body class="solar-page">
+  <main class="solar-main">
+    <div class="top-bar">
+      <div>
+        <h1 data-i18n="solarTitle">Solar System Explorer</h1>
+        <p data-i18n="solarSubtitle">Explore the planets, compare their worlds, and see how their orbits differ.</p>
+      </div>
+      <div class="top-actions">
+        <a class="back-home" href="index.html" data-i18n="home">← All modules</a>
+        <button id="language-button" type="button" aria-label="Change language">中文</button>
+      </div>
+    </div>
+
+    <section class="solar-intro">
+      <p class="eyebrow" data-i18n="chapterTag">A TOUR OF OUR COSMIC NEIGHBORHOOD</p>
+      <p data-i18n="solarIntro">Choose a planet to discover its size, distance from the Sun, orbital period, and a few features that make it unique.</p>
+    </section>
+
+    <section class="solar-panel orbit-panel" aria-labelledby="orbit-title">
+      <div class="solar-section-heading">
+        <div>
+          <p class="eyebrow" data-i18n="orbitEyebrow">WATCH THE PLANETS MOVE</p>
+          <h2 id="orbit-title" data-i18n="orbitTitle">A simplified solar system</h2>
+        </div>
+        <button id="orbit-toggle" class="secondary-button" type="button" aria-pressed="false" data-i18n="pauseOrbits">Pause animation</button>
+      </div>
+      <p class="section-description" data-i18n="orbitNote">Planet paths and sizes are not to scale. The animation speeds are compressed for learning; the planets do not orbit at these real-time speeds.</p>
+
+      <div class="orbit-visual" id="orbit-visual">
+        <svg class="orbit-svg" viewBox="0 0 800 650" role="img" aria-labelledby="orbit-svg-title orbit-svg-description">
+          <title id="orbit-svg-title" data-i18n="orbitSvgTitle">Animated diagram of the eight planets orbiting the Sun</title>
+          <desc id="orbit-svg-description" data-i18n="orbitSvgDescription">Concentric, illustrative orbit paths show Mercury through Neptune around the Sun. Orbit sizes and planet sizes are not to scale.</desc>
+          <defs>
+            <radialGradient id="sun-glow">
+              <stop offset="0" stop-color="#fff6bd" />
+              <stop offset="0.55" stop-color="#ffc45e" />
+              <stop offset="1" stop-color="#f08a36" stop-opacity="0.08" />
+            </radialGradient>
+          </defs>
+          <g class="orbit-tracks" aria-hidden="true">
+            <circle cx="400" cy="325" r="42" />
+            <circle cx="400" cy="325" r="68" />
+            <circle cx="400" cy="325" r="94" />
+            <circle cx="400" cy="325" r="120" />
+            <circle cx="400" cy="325" r="168" />
+            <circle cx="400" cy="325" r="218" />
+            <circle cx="400" cy="325" r="268" />
+            <circle cx="400" cy="325" r="318" />
+          </g>
+          <g id="sun-select" class="sun-select" role="button" tabindex="0" aria-label="The Sun" data-i18n-aria-label="sun">
+            <circle class="sun-hit-area" cx="400" cy="325" r="34" />
+            <circle class="sun-glow" cx="400" cy="325" r="28" />
+            <circle class="sun-core" cx="400" cy="325" r="11" />
+          </g>
+          <g class="orbit-motion mercury-orbit" style="--orbit-duration: 8s" aria-hidden="true"><circle cx="442" cy="325" r="4" /></g>
+          <g class="orbit-motion venus-orbit" style="--orbit-duration: 11s" aria-hidden="true"><circle cx="468" cy="325" r="6" /></g>
+          <g class="orbit-motion earth-orbit" style="--orbit-duration: 14s" aria-hidden="true"><circle cx="494" cy="325" r="6" /></g>
+          <g class="orbit-motion mars-orbit" style="--orbit-duration: 17s" aria-hidden="true"><circle cx="520" cy="325" r="5" /></g>
+          <g class="orbit-motion jupiter-orbit" style="--orbit-duration: 23s" aria-hidden="true"><circle cx="568" cy="325" r="10" /></g>
+          <g class="orbit-motion saturn-orbit" style="--orbit-duration: 27s" aria-hidden="true"><ellipse class="saturn-rings" cx="618" cy="325" rx="12" ry="5" /><circle cx="618" cy="325" r="7" /></g>
+          <g class="orbit-motion uranus-orbit" style="--orbit-duration: 31s" aria-hidden="true"><circle cx="668" cy="325" r="7" /></g>
+          <g class="orbit-motion neptune-orbit" style="--orbit-duration: 35s" aria-hidden="true"><circle cx="718" cy="325" r="7" /></g>
+        </svg>
+      </div>
+
+      <div class="planet-picker" role="group" aria-label="Choose a planet" data-i18n-aria-label="planetPickerLabel">
+        <button class="planet-choice" type="button" data-planet="sun" aria-pressed="false"><span class="planet-swatch sun-swatch"></span><span data-i18n="sun">Sun</span></button>
+        <button class="planet-choice is-selected" type="button" data-planet="mercury" aria-pressed="true"><span class="planet-swatch mercury-swatch"></span><span data-i18n="mercury">Mercury</span></button>
+        <button class="planet-choice" type="button" data-planet="venus" aria-pressed="false"><span class="planet-swatch venus-swatch"></span><span data-i18n="venus">Venus</span></button>
+        <button class="planet-choice" type="button" data-planet="earth" aria-pressed="false"><span class="planet-swatch earth-swatch"></span><span data-i18n="earth">Earth</span></button>
+        <button class="planet-choice" type="button" data-planet="mars" aria-pressed="false"><span class="planet-swatch mars-swatch"></span><span data-i18n="mars">Mars</span></button>
+        <button class="planet-choice" type="button" data-planet="jupiter" aria-pressed="false"><span class="planet-swatch jupiter-swatch"></span><span data-i18n="jupiter">Jupiter</span></button>
+        <button class="planet-choice" type="button" data-planet="saturn" aria-pressed="false"><span class="planet-swatch saturn-swatch"></span><span data-i18n="saturn">Saturn</span></button>
+        <button class="planet-choice" type="button" data-planet="uranus" aria-pressed="false"><span class="planet-swatch uranus-swatch"></span><span data-i18n="uranus">Uranus</span></button>
+        <button class="planet-choice" type="button" data-planet="neptune" aria-pressed="false"><span class="planet-swatch neptune-swatch"></span><span data-i18n="neptune">Neptune</span></button>
+      </div>
+    </section>
+
+    <section class="solar-panel planet-detail-panel" aria-labelledby="planet-detail-title" aria-live="polite">
+      <div class="solar-section-heading detail-heading">
+        <div>
+          <p id="body-profile-label" class="eyebrow" data-i18n="planetProfile">PLANET PROFILE</p>
+          <h2 id="planet-detail-title">Mercury</h2>
+        </div>
+        <span id="planet-type" class="planet-type">Terrestrial planet</span>
+      </div>
+      <p id="planet-fact" class="planet-fact"></p>
+      <dl class="planet-stats">
+        <div><dt id="planet-diameter-label" data-i18n="diameterLabel">Mean diameter</dt><dd id="planet-diameter"></dd></div>
+        <div><dt id="planet-distance-label" data-i18n="distanceLabel">Average distance from the Sun</dt><dd id="planet-distance"></dd></div>
+        <div><dt id="planet-period-label" data-i18n="periodLabel">Orbital period</dt><dd id="planet-period"></dd></div>
+        <div><dt id="planet-moons-label" data-i18n="moonsLabel">Notable moons</dt><dd id="planet-moons"></dd></div>
+      </dl>
+      <p id="au-note" class="unit-note" data-i18n="auNote">One astronomical unit (AU) is about 149.6 million km, the average Earth–Sun distance.</p>
+      <p id="kepler-result" class="kepler-result"><strong id="kepler-check" data-i18n="keplerCheck">Kepler's third-law check (a³ / T²)</strong>: <span id="kepler-ratio"></span> <span id="kepler-units" data-i18n="keplerUnits">(a in AU, T in Earth years; approximately 1 for planets orbiting the Sun)</span></p>
+    </section>
+
+    <section class="solar-panel size-panel" aria-labelledby="size-title">
+      <p class="eyebrow" data-i18n="sizeEyebrow">COMPARE A DIFFERENT SCALE</p>
+      <h2 id="size-title" data-i18n="sizeTitle">Planet sizes side by side</h2>
+      <p class="section-description" data-i18n="sizeNote">Circle diameters use one shared scale. Orbit distances above use a separate illustrative scale, so the two diagrams should not be compared directly.</p>
+      <div id="size-comparison" class="size-comparison"></div>
+    </section>
+
+    <section class="solar-panel kepler-panel" aria-labelledby="kepler-title">
+      <p class="eyebrow" data-i18n="bookConnection">KEY PRINCIPLE: KEPLER’S THIRD LAW</p>
+      <h2 id="kepler-title" data-i18n="keplerTitle">A farther planet takes longer to orbit</h2>
+      <p data-i18n="keplerDescription">Kepler's third law connects a planet's average distance from the Sun to its orbital period. In solar-system units, the cube of the distance in astronomical units is approximately the square of the period in Earth years: a³ ≈ T².</p>
+      <p class="book-reference" data-i18n="bookReference">Inspired by The Physical Universe, Chapter 17, “The Solar System,” and Chapter 18, “Origin of the Solar System and the Earth.” The orbit animation is illustrative, not a precision ephemeris.</p>
+    </section>
+
+    <footer class="solar-footer">
+      <a class="image-credit" href="https://science.nasa.gov/solar-system/planets/overview/" target="_blank" rel="noreferrer" data-i18n="dataSource">Planet facts: NASA Solar System Exploration.</a>
+      <a class="image-credit" href="https://photojournal.jpl.nasa.gov/catalog/PIA10969" target="_blank" rel="noreferrer" data-i18n="backgroundCredit">Background image: Solar System Montage with Eight Planets, NASA/JPL.</a>
+    </footer>
+  </main>
+</body>
+</html>
+
+
+

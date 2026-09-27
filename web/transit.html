@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09111f">
+  <title>Universe Transit Simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+
+<body class="transit-page">
+  <main>
+    <div class="top-bar">
+      <div>
+        <h1 data-i18n="title">Universe Transit Simulator</h1>
+        <p data-i18n="subtitle">
+          Simulate the brightness change caused by an exoplanet transit.
+        </p>
+      </div>
+
+      <div class="top-actions">
+        <a class="back-home" href="index.html" data-i18n="home">Home</a>
+        <button id="language-button" type="button" aria-label="Change language">中文</button>
+      </div>
+    </div>
+
+    <section class="controls">
+      <label>
+        <span data-i18n="starRadius">Star radius (km)</span>
+        <input id="star-radius" type="number" value="695700" min="1" step="1">
+      </label>
+
+      <label>
+        <span data-i18n="planetRadius">Planet radius (km)</span>
+        <input id="planet-radius" type="number" value="6371" min="1" step="1">
+      </label>
+
+      <label class="noise-control">
+        <span data-i18n="noiseLevel">Observation noise</span>
+        <span class="noise-inputs">
+          <input id="noise-level" type="range" value="50" min="0" max="500" step="1">
+          <input id="noise-number" type="number" value="50" min="0" max="500" step="1">
+          <span>ppm</span>
+        </span>
+      </label>
+
+      <div class="simulation-action">
+        <button id="simulate-button" data-i18n="simulate">
+          Simulate Transit
+        </button>
+        <span id="simulation-status" aria-live="polite"></span>
+      </div>
+
+      <label class="observation-control">
+        <span data-i18n="observationCount">Number of observations</span>
+        <input
+          id="observation-count"
+          type="number"
+          value="101"
+          min="2"
+          max="1000"
+          step="1"
+        >
+      </label>
+    </section>
+
+    <section class="results-panel" aria-labelledby="results-title">
+      <h2 id="results-title" data-i18n="resultsTitle">Simulation results</h2>
+      <div id="results" aria-live="polite"></div>
+    </section>
+
+    <details class="model-note" open>
+      <summary data-i18n="modelTitle">About this model</summary>
+      <p>
+        <span data-i18n="modelDepthLead">The estimated transit depth uses</span>
+        <code>δ = (planet radius / star radius)²</code>.
+      </p>
+      <p data-i18n="modelLimitations">
+        The curve uses a simplified center-crossing profile across relative positions −5 to +5. Noise is simulated as random scatter, and the displayed detection SNR is approximate. This is an educational illustration, not a fit to real observations.
+      </p>
+    </details>
+
+    <section class="chart-section" aria-labelledby="light-curve-title">
+      <h2 id="light-curve-title" data-i18n="chartTitle">Transit light curve</h2>
+      <canvas
+        id="light-curve"
+        width="800"
+        height="500"
+        role="img"
+        aria-labelledby="light-curve-title"
+        aria-describedby="chart-summary"
+      ></canvas>
+      <p id="chart-summary" class="visually-hidden" aria-live="polite"></p>
+    </section>
+
+    <footer class="page-image-credit">
+      <a
+        class="image-credit"
+        href="https://images.nasa.gov/details/PIA13351"
+        target="_blank"
+        rel="noreferrer"
+        data-i18n="transitImageCredit"
+      >Background illustration: NASA/Ames/JPL-Caltech (Kepler-9).</a>
+    </footer>
+  </main>
+</body>
+</html>
+
+
