@@ -1281,6 +1281,11 @@ a.module-card:focus-visible {
   outline: none;
 }
 
+.module-card-upcoming {
+  border-color: rgba(137, 176, 211, 0.14);
+  background: linear-gradient(145deg, rgba(15, 28, 45, 0.9), rgba(11, 21, 35, 0.9));
+}
+
 .module-card-top {
   display: flex;
   width: 100%;
@@ -1305,6 +1310,21 @@ a.module-card:focus-visible {
 .solar-icon {
   background: rgba(242, 177, 88, 0.12);
   color: #f2b158;
+}
+
+.star-evolution-icon {
+  background: rgba(242, 177, 88, 0.12);
+  color: #f2c878;
+}
+
+.gravity-icon {
+  background: rgba(124, 196, 255, 0.12);
+  color: #8bcaff;
+}
+
+.spectra-icon {
+  background: rgba(178, 145, 255, 0.14);
+  color: #c1a9ff;
 }
 
 .moon-icon {
