@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09111f">
+  <title>Earth–Moon Explorer</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="analytics.js" defer></script>
+  <script src="moon.js" defer></script>
+</head>
+
+<body class="moon-page">
+  <main class="moon-main">
+    <div class="top-bar">
+      <div>
+        <h1 data-i18n="title">Earth–Moon Explorer</h1>
+        <p data-i18n="subtitle">Explore how the Moon moves around Earth and why its appearance changes.</p>
+      </div>
+      <div class="top-actions">
+        <a class="back-home" href="index.html" data-i18n="home">← All modules</a>
+        <button id="language-button" type="button" aria-label="Change language">中文</button>
+      </div>
+    </div>
+
+    <section class="moon-intro" aria-labelledby="intro-title">
+      <p class="eyebrow" data-i18n="eyebrow">OUR NEAREST CELESTIAL NEIGHBOR</p>
+      <h2 id="intro-title" data-i18n="exploreTitle">One orbit, many lunar phases</h2>
+      <p data-i18n="intro">Move through a lunar month to see the Moon's position around Earth and the changing sunlit portion we see from home.</p>
+    </section>
+
+    <section class="solar-panel moon-explorer-panel" aria-labelledby="orbit-title">
+      <div class="solar-section-heading">
+        <div>
+          <p class="eyebrow" data-i18n="orbitEyebrow">THE MOON AROUND EARTH</p>
+          <h2 id="orbit-title" data-i18n="orbitTitle">Explore the lunar orbit</h2>
+        </div>
+        <span class="moon-day-badge"><span data-i18n="dayLabel">Lunar day</span>: <strong id="lunar-day">0.0</strong></span>
+      </div>
+      <p class="section-description" data-i18n="orbitNote">The orbit and sizes are simplified and not to scale. The Moon's phase is caused by sunlight illuminating different portions of the side facing Earth.</p>
+
+      <div class="moon-visual">
+        <svg class="moon-orbit-svg" viewBox="0 0 640 390" role="img" aria-labelledby="orbit-svg-title orbit-svg-description">
+          <title id="orbit-svg-title" data-i18n="orbitSvgTitle">Diagram of the Moon orbiting Earth</title>
+          <desc id="orbit-svg-description" data-i18n="orbitSvgDescription">The Sun is to the left. Earth is at the center and the Moon moves around it as the lunar day slider changes.</desc>
+          <defs>
+            <radialGradient id="earth-gradient" cx="35%" cy="30%">
+              <stop offset="0" stop-color="#74c7ff" />
+              <stop offset="1" stop-color="#12528b" />
+            </radialGradient>
+            <radialGradient id="moon-gradient" cx="35%" cy="30%">
+              <stop offset="0" stop-color="#f5f2e9" />
+              <stop offset="1" stop-color="#9299a5" />
+            </radialGradient>
+            <radialGradient id="sun-gradient">
+              <stop offset="0" stop-color="#fff3b0" />
+              <stop offset="1" stop-color="#f2a94d" />
+            </radialGradient>
+            <clipPath id="orbit-moon-clip"><circle r="16" /></clipPath>
+          </defs>
+          <g class="sun-direction" aria-hidden="true">
+            <circle cx="66" cy="195" r="24" fill="url(#sun-gradient)" />
+            <path d="M 100 195 H 145 M 133 183 L 145 195 L 133 207" />
+            <text x="48" y="242" data-i18n="sunLabel">Sunlight</text>
+          </g>
+          <ellipse class="moon-orbit-track" cx="340" cy="195" rx="190" ry="145" />
+          <circle class="earth-body" cx="340" cy="195" r="34" fill="url(#earth-gradient)" />
+          <text class="earth-label" x="340" y="250" text-anchor="middle" data-i18n="earthLabel">Earth</text>
+          <g id="orbiting-moon" class="orbiting-moon" aria-hidden="true">
+            <circle r="16" fill="url(#moon-gradient)" />
+            <circle id="orbit-moon-shadow" class="orbit-moon-shadow" cy="0" r="16" clip-path="url(#orbit-moon-clip)" />
+          </g>
+          <text class="moon-orbit-label" x="340" y="375" text-anchor="middle" data-i18n="orbitDiagramNote">Illustrative orbit — not to scale</text>
+        </svg>
+      </div>
+
+      <div class="moon-phase-summary" aria-live="polite">
+        <div class="moon-phase-disc" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <defs><clipPath id="phase-disc-clip"><circle cx="60" cy="60" r="48" /></clipPath></defs>
+            <circle cx="60" cy="60" r="48" class="moon-disc-lit" />
+            <circle id="phase-shadow" cy="60" r="48" class="moon-disc-shadow" clip-path="url(#phase-disc-clip)" />
+          </svg>
+        </div>
+        <div>
+          <p class="eyebrow" data-i18n="seenFromEarth">SEEN FROM EARTH</p>
+          <h3 id="phase-name">New Moon</h3>
+          <p class="phase-illumination-text"><span data-i18n="illuminatedLabel">Illuminated</span>: <strong id="illumination-percent">0%</strong></p>
+        </div>
+      </div>
+
+      <label class="moon-time-control" for="lunar-day-slider">
+        <span data-i18n="timeControl">Move through the lunar month</span>
+        <input id="lunar-day-slider" type="range" min="0" max="29.53" step="0.1" value="0" aria-describedby="lunar-day-help">
+        <span class="moon-range-labels"><span data-i18n="newMoon">New Moon</span><span data-i18n="fullMoon">Full Moon</span><span data-i18n="nextNewMoon">Next New Moon</span></span>
+      </label>
+      <p id="lunar-day-help" class="section-description" data-i18n="sliderHelp">Drag the slider or use the arrow keys to move in time. One complete phase cycle takes about 29.53 days.</p>
+    </section>
+
+    <section class="solar-panel moon-facts-panel" aria-labelledby="facts-title">
+      <p class="eyebrow" data-i18n="factsEyebrow">A FEW LUNAR FACTS</p>
+      <h2 id="facts-title" data-i18n="factsTitle">Earth and Moon by the numbers</h2>
+      <dl class="moon-facts-grid">
+        <div><dt data-i18n="meanDistance">Average distance from Earth</dt><dd>384,400 km</dd></div>
+        <div><dt data-i18n="moonDiameter">Moon's mean diameter</dt><dd>3,475 km</dd></div>
+        <div><dt data-i18n="siderealMonth">Orbit relative to distant stars</dt><dd>27.32 days</dd></div>
+        <div><dt data-i18n="synodicMonth">Phase cycle</dt><dd>29.53 days</dd></div>
+      </dl>
+      <p class="moon-explanation" data-i18n="phaseExplanation">The Moon does not make its own light: sunlight illuminates half of it at all times. As it orbits Earth, we see different fractions of that sunlit half. A lunar phase is not Earth's shadow; Earth's shadow causes a lunar eclipse only when the bodies align closely enough.</p>
+    </section>
+
+    <footer class="solar-footer">
+      <p class="image-credit" data-i18n="scaleNote">Educational diagram. Orbit and body sizes are not to scale.</p>
+    </footer>
+  </main>
+</body>
+</html>
+
+
+
+

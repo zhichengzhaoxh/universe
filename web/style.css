@@ -270,6 +270,212 @@ output {
   background-attachment: fixed;
 }
 
+.moon-page {
+  background:
+    linear-gradient(180deg, rgba(5, 11, 24, 0.72), rgba(5, 11, 24, 0.88)),
+    url("images/solar-system-eight-planets.jpg") center 28% / cover fixed,
+    #080f1d;
+}
+
+.moon-main {
+  width: min(900px, 92%);
+  margin: 34px auto 0;
+}
+
+.moon-intro {
+  max-width: 720px;
+  margin: 34px 0 24px;
+  color: #c1d2e3;
+  line-height: 1.7;
+}
+
+.moon-intro h2 {
+  margin: 0;
+  color: #eef5ff;
+  font-size: clamp(25px, 4vw, 34px);
+}
+
+.moon-intro > p:last-child {
+  margin-bottom: 0;
+}
+
+.moon-day-badge {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  border: 1px solid rgba(137, 176, 211, 0.24);
+  border-radius: 999px;
+  color: #b7c9dc;
+  font-size: 13px;
+}
+
+.moon-day-badge strong {
+  color: #eef5ff;
+  font-variant-numeric: tabular-nums;
+}
+
+.moon-visual {
+  margin: 18px auto 10px;
+  overflow: hidden;
+  border: 1px solid rgba(119, 157, 193, 0.14);
+  border-radius: 14px;
+  background: radial-gradient(ellipse at center, rgba(29, 56, 84, 0.58), rgba(6, 14, 26, 0.88) 72%);
+}
+
+.moon-orbit-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.moon-orbit-svg text {
+  fill: #c9d9eb;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+
+.sun-direction path {
+  fill: none;
+  stroke: #f2b158;
+  stroke-width: 2;
+}
+
+.moon-orbit-track {
+  fill: none;
+  stroke: rgba(164, 191, 216, 0.42);
+  stroke-dasharray: 4 7;
+  stroke-width: 1.5;
+}
+
+.earth-body {
+  stroke: rgba(171, 222, 255, 0.8);
+  stroke-width: 1.5;
+}
+
+.earth-label {
+  font-weight: bold;
+}
+
+.orbiting-moon circle:first-child {
+  stroke: rgba(255, 255, 255, 0.65);
+  stroke-width: 1;
+}
+
+.orbit-moon-shadow,
+.moon-disc-shadow {
+  fill: #111824;
+}
+
+.moon-orbit-label {
+  fill: #91a9c1 !important;
+  font-size: 11px !important;
+}
+
+.moon-phase-summary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: fit-content;
+  margin: 22px auto;
+}
+
+.moon-phase-disc {
+  width: 92px;
+  height: 92px;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 0 18px rgba(236, 231, 208, 0.15));
+}
+
+.moon-phase-disc svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.moon-disc-lit {
+  fill: #e9e5d8;
+}
+
+.moon-phase-summary .eyebrow {
+  margin-bottom: 5px;
+}
+
+.moon-phase-summary h3 {
+  margin: 0;
+  color: #f0f6fc;
+  font-size: 21px;
+}
+
+.phase-illumination-text {
+  margin: 6px 0 0;
+  color: #a9bbcf;
+  font-size: 14px;
+}
+
+.phase-illumination-text strong {
+  color: #f0f6fc;
+  font-variant-numeric: tabular-nums;
+}
+
+.moon-time-control {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+  color: #c9d9eb;
+  font-weight: bold;
+}
+
+.moon-time-control input[type="range"] {
+  width: 100%;
+  accent-color: #7cc4ff;
+}
+
+.moon-range-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #9fb4c9;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.moon-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0 0;
+}
+
+.moon-facts-grid > div {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid rgba(137, 176, 211, 0.14);
+  border-radius: 10px;
+  background: rgba(5, 13, 25, 0.42);
+}
+
+.moon-facts-grid dt {
+  margin-bottom: 7px;
+  color: #91a9c1;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.moon-facts-grid dd {
+  margin: 0;
+  color: #f0f6fc;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.45;
+}
+
+.moon-explanation {
+  margin: 16px 0 0;
+  color: #c1d2e3;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .solar-main {
   width: min(1000px, 92%);
   margin: 34px auto 0;
@@ -747,9 +953,23 @@ output {
     background-attachment: scroll;
   }
 
+  .moon-page {
+    background-attachment: scroll;
+  }
+
   .solar-main {
     width: min(100% - 28px, 520px);
     margin-top: 22px;
+  }
+
+  .moon-main {
+    width: min(100% - 28px, 520px);
+    margin-top: 22px;
+  }
+
+  .moon-intro {
+    margin-top: 24px;
+    font-size: 15px;
   }
 
   .solar-intro {
@@ -759,6 +979,18 @@ output {
 
   .solar-panel {
     padding: 18px 14px;
+  }
+
+  .moon-day-badge {
+    align-self: flex-start;
+  }
+
+  .moon-facts-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .moon-range-labels {
+    font-size: 10px;
   }
 
   .solar-section-heading {
@@ -905,7 +1137,7 @@ output {
 
 .module-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 18px;
 }
 
@@ -957,6 +1189,11 @@ a.module-card:focus-visible {
 .solar-icon {
   background: rgba(242, 177, 88, 0.12);
   color: #f2b158;
+}
+
+.moon-icon {
+  background: rgba(182, 197, 218, 0.12);
+  color: #d8deea;
 }
 
 .module-status {

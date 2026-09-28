@@ -30,6 +30,8 @@ document.addEventListener("click", (event) => {
 
   const page = document.body.classList.contains("home-page")
     ? "home"
+    : document.body.classList.contains("moon-page")
+      ? "moon"
     : document.body.classList.contains("solar-page")
       ? "solar"
       : "transit";
