@@ -66,6 +66,17 @@ const translations = {
     sizeNote: "This comparison shows the eight planets, not the Sun, whose diameter is far larger. Circle diameters use one shared linear scale; tiny planets have a small minimum display size so they remain visible. Orbit distances above use a separate illustrative scale.",
     sizeChartLabel: "Relative diameters of the eight planets",
     relativeEarth: "Earth = 1",
+    comparisonTitle: "Compare planets",
+    comparisonInstructions: "Choose 2 or 3 planets to compare their properties.",
+    comparisonPickerLabel: "Choose planets to compare",
+    comparisonMinimum: "Select at least two planets to see a comparison.",
+    comparisonMaximum: "You can compare up to three planets at a time.",
+    comparisonPlanet: "Planet",
+    comparisonType: "Type",
+    comparisonDiameter: "Diameter",
+    comparisonDistance: "Distance from the Sun",
+    comparisonPeriod: "Orbital period",
+    comparisonMoons: "Notable moons",
     bookConnection: "KEY PRINCIPLE: KEPLER’S THIRD LAW",
     keplerTitle: "A farther planet takes longer to orbit",
     keplerDescription: "Kepler's third law connects a planet's average distance from the Sun to its orbital period. In solar-system units, the cube of the distance in astronomical units is approximately the square of the period in Earth years: a³ ≈ T².",
@@ -140,6 +151,17 @@ const translations = {
     sizeNote: "此图对比八大行星，不包括直径远大于行星的太阳。圆形直径使用同一线性比例；为使小行星仍清晰可见，显示尺寸设有最小值。上方轨道距离图使用另一套示意比例。",
     sizeChartLabel: "八大行星直径对比",
     relativeEarth: "地球 = 1",
+    comparisonTitle: "行星对比",
+    comparisonInstructions: "选择 2 或 3 颗行星，比较它们的特征。",
+    comparisonPickerLabel: "选择要比较的行星",
+    comparisonMinimum: "至少选择两颗行星以查看对比。",
+    comparisonMaximum: "一次最多可以比较三颗行星。",
+    comparisonPlanet: "行星",
+    comparisonType: "类型",
+    comparisonDiameter: "直径",
+    comparisonDistance: "与太阳的距离",
+    comparisonPeriod: "公转周期",
+    comparisonMoons: "代表性卫星",
     bookConnection: "核心规律：开普勒第三定律",
     keplerTitle: "离太阳越远，公转周期通常越长",
     keplerDescription: "开普勒第三定律将行星到太阳的平均距离与公转周期联系起来。以太阳系常用单位表示，日距（天文单位）的立方约等于公转周期（地球年）的平方：a³ ≈ T²。",
@@ -172,6 +194,7 @@ const savedLanguage = localStorage.getItem("universe-language");
 let currentLanguage = translations[savedLanguage] ? savedLanguage : "en";
 let selectedPlanetId = "mercury";
 let animationPaused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const comparisonPlanetIds = ["earth", "mars"];
 
 function applyLanguage() {
   const text = translations[currentLanguage];
@@ -189,6 +212,7 @@ function applyLanguage() {
   languageButton.setAttribute("aria-label", text.changeLanguage);
   renderPlanet(selectedPlanetId);
   updateAnimationControl();
+  renderPlanetComparison();
 }
 
 function renderPlanet(planetId) {
@@ -271,6 +295,72 @@ function renderSizeComparison(selectedId) {
   container.querySelectorAll(".size-planet").forEach((button) => {
     button.addEventListener("click", () => renderPlanet(button.dataset.planet));
   });
+}
+
+function renderPlanetComparison() {
+  const text = translations[currentLanguage];
+  const numberLocale = currentLanguage === "zh" ? "zh-CN" : "en-US";
+  const picker = document.getElementById("comparison-picker");
+  const results = document.getElementById("comparison-results");
+
+  picker.innerHTML = planets.map((planet) => {
+    const selected = comparisonPlanetIds.includes(planet.id);
+    return `<button class="comparison-planet" type="button" data-planet="${planet.id}" aria-pressed="${selected}">
+      <span class="planet-swatch ${planet.id}-swatch" aria-hidden="true"></span>
+      <span>${text[planet.id]}</span>
+    </button>`;
+  }).join("");
+
+  picker.querySelectorAll(".comparison-planet").forEach((button) => {
+    button.addEventListener("click", () => {
+      const planetId = button.dataset.planet;
+      const selectedIndex = comparisonPlanetIds.indexOf(planetId);
+      if (selectedIndex >= 0) {
+        comparisonPlanetIds.splice(selectedIndex, 1);
+      } else if (comparisonPlanetIds.length < 3) {
+        comparisonPlanetIds.push(planetId);
+      } else {
+        document.getElementById("comparison-instructions").textContent = text.comparisonMaximum;
+        return;
+      }
+      renderPlanetComparison();
+    });
+  });
+
+  picker.querySelectorAll(".comparison-planet").forEach((button) => {
+    const selected = comparisonPlanetIds.includes(button.dataset.planet);
+    button.classList.toggle("is-selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  });
+
+  document.getElementById("comparison-instructions").textContent =
+    comparisonPlanetIds.length >= 3 ? text.comparisonMaximum : text.comparisonInstructions;
+
+  if (comparisonPlanetIds.length < 2) {
+    results.innerHTML = `<p class="comparison-empty">${text.comparisonMinimum}</p>`;
+    return;
+  }
+
+  const rows = [
+    { label: text.comparisonType, value: (planet) => text[planet.type] },
+    { label: text.comparisonDiameter, value: (planet) => `${planet.diameter.toLocaleString(numberLocale)} km` },
+    { label: text.comparisonDistance, value: (planet) => `${planet.distanceAu.toLocaleString(numberLocale, { maximumFractionDigits: 3 })} AU` },
+    { label: text.comparisonPeriod, value: (planet) => currentLanguage === "zh"
+      ? `${planet.periodDays.toLocaleString(numberLocale)} 天（${planet.periodYears.toLocaleString(numberLocale, { maximumFractionDigits: 3 })} 地球年）`
+      : `${planet.periodDays.toLocaleString(numberLocale)} days (${planet.periodYears.toLocaleString(numberLocale, { maximumFractionDigits: 3 })} Earth years)` },
+    { label: text.comparisonMoons, value: (planet) => text[planet.moons] }
+  ];
+  const selectedPlanets = comparisonPlanetIds.map((id) => planets.find((planet) => planet.id === id));
+
+  results.innerHTML = `<div class="comparison-table-wrap"><table class="comparison-table">
+    <caption class="visually-hidden">${text.comparisonTitle}</caption>
+    <thead><tr><th scope="col">${text.comparisonPlanet}</th>${selectedPlanets.map((planet) =>
+      `<th scope="col"><span class="comparison-planet-heading"><span class="planet-swatch ${planet.id}-swatch" aria-hidden="true"></span>${text[planet.id]}</span></th>`
+    ).join("")}</tr></thead>
+    <tbody>${rows.map((row) => `<tr><th scope="row">${row.label}</th>${selectedPlanets.map((planet) =>
+      `<td>${row.value(planet)}</td>`
+    ).join("")}</tr>`).join("")}</tbody>
+  </table></div>`;
 }
 
 function updateAnimationControl() {

@@ -43,6 +43,10 @@ document.addEventListener("click", (event) => {
     trackAnalyticsEvent("planet_select", { planet: target.dataset.planet || "sun" });
   }
 
+  if (target.matches(".comparison-planet")) {
+    trackAnalyticsEvent("planet_compare_toggle", { planet: target.dataset.planet });
+  }
+
   if (target.id === "orbit-toggle") {
     trackAnalyticsEvent("animation_toggle", {
       action: target.getAttribute("aria-pressed") === "true" ? "pause" : "play"
