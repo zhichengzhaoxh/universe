@@ -31,7 +31,22 @@ const translations = {
     synodicMonth: "Phase cycle",
     phaseExplanation: "The Moon does not make its own light: sunlight illuminates half of it at all times. As it orbits Earth, we see different fractions of that sunlit half. A lunar phase is not Earth's shadow; Earth's shadow causes a lunar eclipse only when the bodies align closely enough.",
     scaleNote: "Educational diagram. Orbit and body sizes are not to scale.",
-    phases: ["New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous", "Full Moon", "Waning Gibbous", "Last Quarter", "Waning Crescent"]
+    phases: ["New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous", "Full Moon", "Waning Gibbous", "Last Quarter", "Waning Crescent"],
+    tidesEyebrow: "THE MOON AND EARTH'S OCEANS",
+    tidesTitle: "Why the tides change",
+    currentTide: "Current alignment",
+    relativeForcing: "Relative tidal forcing",
+    springTide: "Spring tides",
+    springTideExplanation: "Near new and full Moon, the lunar and solar tidal effects reinforce each other, producing a larger tidal range.",
+    neapTide: "Neap tides",
+    neapTideExplanation: "Near first and last quarter, the effects partly counteract each other, producing a smaller tidal range.",
+    tidesExplanation: "Tides come from differences in the Moon's and Sun's gravitational pull across Earth, not simply from the pull itself. The difference stretches the oceans into two broad bulges: one toward the Moon and one on the opposite side.",
+    tideModelTitle: "About this simplified model",
+    tideModelExplanation: "The diagram exaggerates Earth's ocean bulges. Its relative forcing bar combines idealized lunar and solar tide-generating effects, taking the Sun's contribution as about 46% of the Moon's. The percentage is not a prediction of local tide height. Real tides depend on coastlines, ocean depth and shape, weather, and other factors; high and low tides do not occur at the same clock time everywhere.",
+    springTideState: "Spring tide",
+    neapTideState: "Neap tide",
+    intermediateTideState: "Between spring and neap tides",
+    forcingAccessible: "Relative combined lunar and solar tide-generating effect"
   },
   zh: {
     title: "地月系统探索器",
@@ -65,7 +80,22 @@ const translations = {
     synodicMonth: "月相周期",
     phaseExplanation: "月球本身不会发光：阳光始终照亮月球的一半。月球绕地球运行时，我们看到的受光部分比例随之变化。月相不是地球的影子；只有日、地、月接近成一直线时，地球影子才会造成月食。",
     scaleNote: "教学示意图；轨道和天体大小均未按比例绘制。",
-    phases: ["新月", "娥眉月（渐盈）", "上弦月", "盈凸月", "满月", "亏凸月", "下弦月", "残月（渐亏）"]
+    phases: ["新月", "娥眉月（渐盈）", "上弦月", "盈凸月", "满月", "亏凸月", "下弦月", "残月（渐亏）"],
+    tidesEyebrow: "月球与地球海洋",
+    tidesTitle: "潮汐为何变化",
+    currentTide: "当前日月排列",
+    relativeForcing: "相对潮汐作用",
+    springTide: "大潮（朔望潮）",
+    springTideExplanation: "新月和满月前后，月球与太阳的潮汐作用大致加强彼此，潮差通常较大。",
+    neapTide: "小潮（上下弦潮）",
+    neapTideExplanation: "上弦月和下弦月前后，日月潮汐作用部分抵消，潮差通常较小。",
+    tidesExplanation: "潮汐来自月球和太阳引力在地球不同位置上的差异，而不只是引力本身。这个差异会拉伸海洋，形成两个宽广的潮汐隆起：一个朝向月球，另一个位于地球背月一侧。",
+    tideModelTitle: "关于这个简化模型",
+    tideModelExplanation: "图中夸大了地球海洋的隆起。相对作用条将理想化的月球与太阳潮汐作用合并，并假设太阳的作用约为月球的 46%。该百分比不是对当地潮高的预测。真实潮汐还取决于海岸线、海深与海盆形状、天气等因素；不同地点的高潮和低潮时刻也不相同。",
+    springTideState: "大潮",
+    neapTideState: "小潮",
+    intermediateTideState: "大潮与小潮之间",
+    forcingAccessible: "月球与太阳合成的相对潮汐作用"
   }
 };
 
@@ -74,6 +104,7 @@ const ORBIT_CENTER = { x: 340, y: 195 };
 const ORBIT_RADII = { x: 190, y: 145 };
 const ORBITING_MOON_RADIUS = 16;
 const PHASE_DISC_RADIUS = 48;
+const SOLAR_TIDE_TO_LUNAR_TIDE = 0.46;
 const languageButton = document.getElementById("language-button");
 const lunarDaySlider = document.getElementById("lunar-day-slider");
 const savedLanguage = localStorage.getItem("universe-language");
@@ -103,7 +134,7 @@ function updateMoon(dayValue) {
   const illuminatedFraction = (1 - Math.cos(phaseAngle)) / 2;
   const phaseIndex = Math.round((day / SYNODIC_MONTH_DAYS) * 8) % 8;
   const waxingDirection = phaseAngle <= Math.PI ? 1 : -1;
-  const shadowOffset = waxingDirection * 2 * PHASE_DISC_RADIUS * illuminatedFraction;
+  const shadowOffset = -waxingDirection * 2 * PHASE_DISC_RADIUS * illuminatedFraction;
   const orbitShadowOffset = 0.5 * ORBITING_MOON_RADIUS;
 
   document.getElementById("orbiting-moon").setAttribute("transform", `translate(${moonX} ${moonY})`);
@@ -112,10 +143,40 @@ function updateMoon(dayValue) {
   document.getElementById("lunar-day").textContent = day.toFixed(1);
   document.getElementById("phase-name").textContent = translations[currentLanguage].phases[phaseIndex];
   document.getElementById("illumination-percent").textContent = `${Math.round(illuminatedFraction * 100)}%`;
+  updateTides(phaseAngle, orbitAngle);
   lunarDaySlider.setAttribute(
     "aria-valuetext",
     `${translations[currentLanguage].dayLabel} ${day.toFixed(1)}, ${translations[currentLanguage].phases[phaseIndex]}`
   );
+}
+
+function updateTides(phaseAngle, orbitAngle) {
+  // Tide-generating force is an axis (near and far bulges), so combine directions at 2× angle.
+  const combinedX = Math.cos(2 * orbitAngle) + SOLAR_TIDE_TO_LUNAR_TIDE;
+  const combinedY = Math.sin(2 * orbitAngle);
+  const alignment = Math.cos(2 * phaseAngle);
+  const text = translations[currentLanguage];
+  const tideState = alignment > 0.5
+    ? text.springTideState
+    : alignment < -0.5
+      ? text.neapTideState
+      : text.intermediateTideState;
+  const forcing = Math.hypot(combinedX, combinedY) / (1 + SOLAR_TIDE_TO_LUNAR_TIDE);
+  const orientationDegrees = Math.atan2(combinedY, combinedX) * 90 / Math.PI;
+  const bulgeRadius = 41 + forcing * 12;
+
+  document.getElementById("tide-state").textContent = tideState;
+  document.getElementById("tide-strength-value").textContent = `${Math.round(forcing * 100)}%`;
+  document.getElementById("tide-strength-bar").style.width = `${Math.round(forcing * 100)}%`;
+  const strengthMeter = document.getElementById("tide-strength-meter");
+  strengthMeter.setAttribute("aria-label", text.forcingAccessible);
+  strengthMeter.setAttribute("aria-valuenow", String(Math.round(forcing * 100)));
+  strengthMeter.setAttribute("aria-valuetext", `${text.forcingAccessible}: ${Math.round(forcing * 100)}%`);
+  document.getElementById("tidal-bulge").setAttribute(
+    "transform",
+    `rotate(${orientationDegrees} ${ORBIT_CENTER.x} ${ORBIT_CENTER.y})`
+  );
+  document.getElementById("tidal-water-outline").setAttribute("rx", String(bulgeRadius));
 }
 
 lunarDaySlider.addEventListener("input", () => updateMoon(lunarDaySlider.value));
@@ -127,7 +188,3 @@ languageButton.addEventListener("click", () => {
 });
 
 applyLanguage();
-
-
-
-

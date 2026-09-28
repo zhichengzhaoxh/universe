@@ -64,6 +64,11 @@
             <text x="48" y="242" data-i18n="sunLabel">Sunlight</text>
           </g>
           <ellipse class="moon-orbit-track" cx="340" cy="195" rx="190" ry="145" />
+          <g id="tidal-bulge" class="tidal-bulge" transform="rotate(0 340 195)" aria-hidden="true">
+            <ellipse id="tidal-water-outline" cx="340" cy="195" rx="50" ry="31" />
+            <circle cx="390" cy="195" r="3.5" />
+            <circle cx="290" cy="195" r="3.5" />
+          </g>
           <circle class="earth-body" cx="340" cy="195" r="34" fill="url(#earth-gradient)" />
           <text class="earth-label" x="340" y="250" text-anchor="middle" data-i18n="earthLabel">Earth</text>
           <g id="orbiting-moon" class="orbiting-moon" aria-hidden="true">
@@ -97,6 +102,36 @@
       <p id="lunar-day-help" class="section-description" data-i18n="sliderHelp">Drag the slider or use the arrow keys to move in time. One complete phase cycle takes about 29.53 days.</p>
     </section>
 
+    <section class="solar-panel moon-tides-panel" aria-labelledby="tides-title">
+      <p class="eyebrow" data-i18n="tidesEyebrow">THE MOON AND EARTH'S OCEANS</p>
+      <h2 id="tides-title" data-i18n="tidesTitle">Why the tides change</h2>
+      <div class="tide-status" aria-live="polite">
+        <div>
+          <p class="tide-state-label" data-i18n="currentTide">Current alignment</p>
+          <h3 id="tide-state">Spring tide</h3>
+        </div>
+          <div id="tide-strength-meter" class="tide-strength" role="progressbar" aria-label="Relative tidal forcing" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+          <div class="tide-strength-heading"><span data-i18n="relativeForcing">Relative tidal forcing</span><strong id="tide-strength-value">100%</strong></div>
+          <div class="tide-strength-track"><span id="tide-strength-bar"></span></div>
+        </div>
+      </div>
+      <p class="moon-explanation" data-i18n="tidesExplanation">Tides come from differences in the Moon's and Sun's gravitational pull across Earth, not simply from the pull itself. The difference stretches the oceans into two broad bulges: one toward the Moon and one on the opposite side.</p>
+      <div class="tide-types">
+        <article>
+          <h3 data-i18n="springTide">Spring tides</h3>
+          <p data-i18n="springTideExplanation">Near new and full Moon, the lunar and solar tidal effects reinforce each other, producing a larger tidal range.</p>
+        </article>
+        <article>
+          <h3 data-i18n="neapTide">Neap tides</h3>
+          <p data-i18n="neapTideExplanation">Near first and last quarter, the effects partly counteract each other, producing a smaller tidal range.</p>
+        </article>
+      </div>
+      <details class="model-note tide-model-note">
+        <summary data-i18n="tideModelTitle">About this simplified model</summary>
+        <p data-i18n="tideModelExplanation">The diagram exaggerates Earth's ocean bulges. Its relative forcing bar combines idealized lunar and solar tide-generating effects, taking the Sun's contribution as about 46% of the Moon's. The percentage is not a prediction of local tide height. Real tides depend on coastlines, ocean depth and shape, weather, and other factors; high and low tides do not occur at the same clock time everywhere.</p>
+      </details>
+    </section>
+
     <section class="solar-panel moon-facts-panel" aria-labelledby="facts-title">
       <p class="eyebrow" data-i18n="factsEyebrow">A FEW LUNAR FACTS</p>
       <h2 id="facts-title" data-i18n="factsTitle">Earth and Moon by the numbers</h2>
@@ -115,7 +150,3 @@
   </main>
 </body>
 </html>
-
-
-
-

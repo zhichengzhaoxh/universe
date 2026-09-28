@@ -360,6 +360,19 @@ output {
   stroke-width: 1;
 }
 
+.tidal-bulge ellipse {
+  fill: rgba(74, 162, 218, 0.2);
+  stroke: rgba(124, 196, 255, 0.86);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+  transition: rx 120ms ease, transform 120ms ease;
+}
+
+.tidal-bulge circle {
+  fill: #a8dfff;
+  filter: drop-shadow(0 0 4px rgba(124, 196, 255, 0.9));
+}
+
 .orbit-moon-shadow,
 .moon-disc-shadow {
   fill: #111824;
@@ -474,6 +487,95 @@ output {
   color: #c1d2e3;
   font-size: 14px;
   line-height: 1.7;
+}
+
+.tide-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid rgba(137, 176, 211, 0.16);
+  border-radius: 12px;
+  background: rgba(5, 13, 25, 0.38);
+}
+
+.tide-state-label {
+  margin: 0 0 5px;
+  color: #9fb4c9;
+  font-size: 12px;
+}
+
+.tide-status h3 {
+  margin: 0;
+  color: #f0f6fc;
+  font-size: 19px;
+}
+
+.tide-strength {
+  width: min(320px, 52%);
+}
+
+.tide-strength-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: #a9bbcf;
+  font-size: 12px;
+}
+
+.tide-strength-heading strong {
+  color: #f0f6fc;
+  font-variant-numeric: tabular-nums;
+}
+
+.tide-strength-track {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(137, 176, 211, 0.16);
+}
+
+.tide-strength-track span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4ba3f2, #83d8dc);
+  transition: width 140ms ease;
+}
+
+.tide-types {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.tide-types article {
+  padding: 14px;
+  border: 1px solid rgba(137, 176, 211, 0.14);
+  border-radius: 10px;
+  background: rgba(5, 13, 25, 0.32);
+}
+
+.tide-types h3 {
+  margin: 0 0 7px;
+  color: #dcecff;
+  font-size: 15px;
+}
+
+.tide-types p {
+  margin: 0;
+  color: #b7c9dc;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.tide-model-note {
+  margin: 18px 0 0;
 }
 
 .solar-main {
@@ -991,6 +1093,20 @@ output {
 
   .moon-range-labels {
     font-size: 10px;
+  }
+
+  .tide-status {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .tide-strength {
+    width: 100%;
+  }
+
+  .tide-types {
+    grid-template-columns: 1fr;
   }
 
   .solar-section-heading {
