@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09111f">
+  <title>Silent Frontier</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="analytics.js" defer></script>
+  <script src="frontier.js" defer></script>
+</head>
+<body>
+  <main id="password-gate" class="solar-main frontier-password-screen" aria-labelledby="password-title">
+    <section class="solar-panel frontier-password-panel">
+      <p class="eyebrow" data-i18n="passwordEyebrow">SECURE TRANSMISSION</p>
+      <h1 id="password-title" data-i18n="passwordTitle">Frontier access</h1>
+      <p class="section-description" data-i18n="passwordPrompt">Enter the access code to open the campaign.</p>
+      <form id="password-form">
+        <label for="access-code" data-i18n="passwordLabel">Access code</label>
+        <input id="access-code" name="access-code" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" required autofocus>
+        <button type="submit" data-i18n="passwordSubmit">Enter campaign</button>
+        <p id="password-error" class="frontier-password-error" role="alert" hidden data-i18n="passwordError">Incorrect code. Try again.</p>
+      </form>
+      <div class="frontier-password-actions">
+        <a class="frontier-password-back" href="index.html" data-i18n="passwordBack">Back to modules</a>
+        <button id="gate-language-button" class="secondary-button" type="button" aria-label="Change language">中文</button>
+      </div>
+    </section>
+  </main>
+
+  <main id="frontier-content" class="solar-main" hidden>
+    <header class="top-bar">
+      <div>
+        <h1 data-i18n="title">Silent Frontier</h1>
+        <p data-i18n="subtitle">A sci-fi RPG about civilization, survival, and the danger of being heard.</p>
+      </div>
+      <div class="top-actions">
+        <a class="back-home" href="index.html" data-i18n="home">← All modules</a>
+      </div>
+    </header>
+
+    <section class="solar-intro" aria-labelledby="premise-title">
+      <p class="eyebrow" data-i18n="eyebrow">A NEW STAR SYSTEM. A FRAGILE CIVILIZATION.</p>
+      <h2 id="premise-title" data-i18n="premiseTitle">Every expansion leaves a trace.</h2>
+      <p data-i18n="premise">Lead a small fleet of survivors into an uncharted system. Build a home, grow your crew, and face an insect-like swarm that adapts to the tactics you rely on. But mining, colonizing, and fighting all create signals that could attract something far more dangerous.</p>
+    </section>
+
+    <section class="solar-panel frontier-game" aria-labelledby="campaign-title">
+      <div class="frontier-game-heading">
+        <div>
+          <p class="eyebrow" data-i18n="campaignEyebrow">PLAYABLE PROTOTYPE · TURN-BASED CAMPAIGN</p>
+          <h2 id="campaign-title" data-i18n="campaignTitle">First Contact</h2>
+        </div>
+      </div>
+      <p class="section-description" data-i18n="objective">Objective: establish 2 colonies and keep your fleet alive through 8 turns. Actions advance time; the swarm responds after every turn.</p>
+
+      <div class="frontier-stats" aria-label="Campaign status">
+        <div class="frontier-stat"><span data-i18n="turnLabel">Turn</span><strong id="turn-value">1 / 8</strong></div>
+        <div class="frontier-stat"><span data-i18n="suppliesLabel">Supplies</span><strong id="supplies-value">8</strong></div>
+        <div class="frontier-stat"><span data-i18n="hullLabel">Fleet hull</span><strong id="hull-value">100%</strong></div>
+        <div class="frontier-stat"><span data-i18n="crewLabel">Crew rank</span><strong id="crew-value">1</strong></div>
+        <div class="frontier-stat"><span data-i18n="coloniesLabel">Colonies</span><strong id="colonies-value">0 / 2</strong></div>
+      </div>
+
+      <div class="frontier-meter-group">
+        <div class="frontier-meter-heading"><span data-i18n="exposureLabel">Signal exposure</span><strong id="exposure-value">12%</strong></div>
+        <div class="frontier-meter"><span id="exposure-bar"></span></div>
+        <div class="frontier-meter-heading frontier-pressure-heading"><span data-i18n="pressureLabel">Swarm pressure</span><strong id="pressure-value">5%</strong></div>
+        <div class="frontier-meter frontier-pressure"><span id="pressure-bar"></span></div>
+      </div>
+
+      <div class="frontier-map-panel">
+        <div class="frontier-map-heading">
+          <h3 data-i18n="mapTitle">Nearby systems</h3>
+          <span><span data-i18n="selectedWorldLabel">Target</span>: <strong id="selected-world-label">Rhea</strong></span>
+        </div>
+        <div class="frontier-map-viewport">
+          <svg class="frontier-starmap" viewBox="0 0 760 370" role="group" aria-labelledby="starmap-title starmap-description">
+            <title id="starmap-title" data-i18n="mapTitle">Nearby systems</title>
+            <desc id="starmap-description" data-i18n="mapDescription">Select a planet to set it as your target. The fleet is in the center and the insect swarm is to the right.</desc>
+            <defs>
+              <radialGradient id="map-nebula-gradient">
+                <stop offset="0" stop-color="#17365b" stop-opacity="0.62" />
+                <stop offset="1" stop-color="#07111f" stop-opacity="0" />
+              </radialGradient>
+              <radialGradient id="map-star-gradient">
+                <stop offset="0" stop-color="#fff4c2" />
+                <stop offset="0.42" stop-color="#f2b158" />
+                <stop offset="1" stop-color="#f2b158" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <rect class="starmap-background" width="760" height="370" rx="12" fill="#0b192a" />
+            <ellipse cx="385" cy="185" rx="330" ry="190" fill="url(#map-nebula-gradient)" />
+            <g class="starmap-stars" aria-hidden="true">
+              <circle cx="46" cy="48" r="1.4" fill="#cde6ff" /><circle cx="92" cy="304" r="1" fill="#cde6ff" />
+              <circle cx="227" cy="190" r="1.2" fill="#cde6ff" /><circle cx="333" cy="39" r="1" fill="#cde6ff" />
+              <circle cx="405" cy="326" r="1.3" fill="#cde6ff" /><circle cx="528" cy="207" r="1" fill="#cde6ff" />
+              <circle cx="716" cy="55" r="1.5" fill="#cde6ff" /><circle cx="691" cy="328" r="1.1" fill="#cde6ff" />
+              <circle cx="582" cy="52" r="1" fill="#cde6ff" /><circle cx="159" cy="143" r="1" fill="#cde6ff" />
+            </g>
+            <g class="starmap-routes" aria-hidden="true">
+              <path d="M 365 183 Q 258 108 146 91" fill="none" stroke="#41617e" />
+              <path d="M 365 183 Q 307 98 278 78" fill="none" stroke="#41617e" />
+              <path d="M 395 183 Q 463 97 514 91" fill="none" stroke="#41617e" />
+              <path d="M 397 193 Q 514 278 622 286" fill="none" stroke="#41617e" />
+              <path id="target-route" d="M 382 185 Q 264 120 146 91" class="target-route" fill="none" stroke="#7cc4ff" />
+              <path id="swarm-route" d="M 411 185 Q 537 176 670 185" class="swarm-route" fill="none" stroke="#eb6b62" />
+            </g>
+
+            <g class="frontier-world-node is-undiscovered is-selected" data-world="rhea" transform="translate(146 91)" role="button" tabindex="0" aria-pressed="true">
+              <circle class="world-target-ring" r="38" fill="rgba(124,196,255,0.08)" stroke="#7cc4ff" />
+              <circle class="world-orbit" r="28" fill="none" stroke="#98b8d3" />
+              <circle class="world-body world-ice" r="18" fill="#b9d6e8" stroke="#e1f0ff" />
+              <path class="colony-marker" d="M -7 0 L 0 -6 L 7 0 V 7 H -7 Z" transform="translate(24 0)" fill="#82d9b1" />
+              <path class="world-detail" d="M -12 -6 Q -2 -15 8 -7 M -5 8 Q 3 3 12 8" fill="none" stroke="#37546a" />
+              <text class="world-map-name" y="54" id="map-name-rhea" fill="#dcecff" text-anchor="middle">?</text>
+              <text class="world-map-status" y="69" id="map-status-rhea" fill="#8fa7bf" text-anchor="middle">···</text>
+            </g>
+            <g class="frontier-world-node is-undiscovered" data-world="vesper" transform="translate(278 78)" role="button" tabindex="0" aria-pressed="false">
+              <circle class="world-target-ring" r="35" fill="rgba(124,196,255,0.08)" stroke="#7cc4ff" />
+              <circle class="world-orbit" r="25" fill="none" stroke="#98b8d3" />
+              <circle class="world-body world-rock" r="15" fill="#bb8464" stroke="#e1f0ff" />
+              <path class="colony-marker" d="M -7 0 L 0 -6 L 7 0 V 7 H -7 Z" transform="translate(21 0)" fill="#82d9b1" />
+              <path class="world-detail" d="M -10 -3 L -2 -10 L 9 -4 L 5 8 L -7 9 Z" fill="none" stroke="#5b3a34" />
+              <text class="world-map-name" y="49" id="map-name-vesper" fill="#dcecff" text-anchor="middle">?</text>
+              <text class="world-map-status" y="64" id="map-status-vesper" fill="#8fa7bf" text-anchor="middle">···</text>
+            </g>
+            <g class="frontier-world-node is-undiscovered" data-world="kepler" transform="translate(514 91)" role="button" tabindex="0" aria-pressed="false">
+              <circle class="world-target-ring" r="39" fill="rgba(124,196,255,0.08)" stroke="#7cc4ff" />
+              <ellipse class="world-orbit" rx="31" ry="23" transform="rotate(-24)" fill="none" stroke="#98b8d3" />
+              <circle class="world-body world-ocean" r="19" fill="#337faa" stroke="#e1f0ff" />
+              <path class="colony-marker" d="M -7 0 L 0 -6 L 7 0 V 7 H -7 Z" transform="translate(25 0)" fill="#82d9b1" />
+              <path class="world-detail" d="M -15 0 Q -7 -8 0 0 T 15 0 M -10 8 Q -4 2 3 8" fill="none" stroke="#173b5a" />
+              <text class="world-map-name" y="55" id="map-name-kepler" fill="#dcecff" text-anchor="middle">?</text>
+              <text class="world-map-status" y="70" id="map-status-kepler" fill="#8fa7bf" text-anchor="middle">···</text>
+            </g>
+            <g class="frontier-world-node is-undiscovered" data-world="talos" transform="translate(622 286)" role="button" tabindex="0" aria-pressed="false">
+              <circle class="world-target-ring" r="38" fill="rgba(124,196,255,0.08)" stroke="#7cc4ff" />
+              <circle class="world-orbit" r="28" fill="none" stroke="#98b8d3" />
+              <circle class="world-body world-desert" r="18" fill="#d5a958" stroke="#e1f0ff" />
+              <path class="colony-marker" d="M -7 0 L 0 -6 L 7 0 V 7 H -7 Z" transform="translate(24 0)" fill="#82d9b1" />
+              <path class="world-detail" d="M -11 -7 Q 0 -1 10 -8 M -13 6 Q -2 0 11 7" fill="none" stroke="#694b2d" />
+              <text class="world-map-name" y="54" id="map-name-talos" fill="#dcecff" text-anchor="middle">?</text>
+              <text class="world-map-status" y="69" id="map-status-talos" fill="#8fa7bf" text-anchor="middle">···</text>
+            </g>
+
+            <g class="starmap-home" aria-hidden="true">
+              <circle class="map-sun-glow" cx="382" cy="185" r="58" fill="url(#map-star-gradient)" />
+              <circle class="map-sun" cx="382" cy="185" r="11" fill="#ffe7a3" />
+              <g id="map-fleet" transform="translate(382 185)">
+                <animateMotion id="fleet-motion" dur="1.1s" begin="indefinite" fill="freeze" path="M 0 0 Q 0 0 0 0" />
+                <circle class="fleet-engine-glow" r="18" fill="rgba(124,196,255,0.22)" />
+                <path class="map-fleet-ship" d="M 0 -24 L 11 2 L 0 -3 L -11 2 Z" fill="#7cc4ff" />
+                <path class="map-fleet-tail" d="M -5 5 L 0 14 L 5 5" fill="none" stroke="#b7e4ff" />
+                <text y="35" fill="#b7c9dc" text-anchor="middle" data-i18n="fleetMapLabel">FLEET</text>
+              </g>
+            </g>
+            <g id="map-swarm" class="starmap-swarm" transform="translate(670 185)" aria-hidden="true">
+              <animateTransform id="swarm-motion" attributeName="transform" type="translate" dur="0.8s" begin="indefinite" fill="freeze" from="670 185" to="670 185" />
+              <circle class="swarm-pulse" r="31" fill="rgba(235,107,98,0.06)" stroke="rgba(235,107,98,0.5)" />
+              <path class="swarm-core" d="M 0 -19 L 8 -7 L 22 -9 L 15 2 L 21 14 L 7 9 L -2 21 L -5 7 L -19 3 L -7 -5 Z" fill="#d96f71" />
+              <circle class="swarm-eye" cx="2" r="3" fill="#ffe1b4" />
+              <text y="48" fill="#b7c9dc" text-anchor="middle" data-i18n="swarmMapLabel">SWARM</text>
+            </g>
+          </svg>
+        </div>
+        <p class="frontier-map-hint" data-i18n="mapHint">Select a planet on the map or in the list to set your target.</p>
+        <ol id="world-list" class="frontier-world-list" aria-live="polite"></ol>
+        <div class="frontier-command-dock" role="group" aria-labelledby="command-target-heading">
+          <div class="frontier-command-heading">
+            <span id="command-target-heading" data-i18n="commandTarget">Commands for selected system</span>
+            <strong id="command-target-name">Rhea</strong>
+          </div>
+          <div class="frontier-command-grid">
+            <button class="frontier-command" type="button" data-action="scout">
+              <span class="command-icon" aria-hidden="true">⌕</span><span class="command-copy"><strong data-i18n="scoutAction">Scout</strong><small data-i18n="scoutCost">Find a world · gain supplies · +signal</small></span>
+            </button>
+            <button class="frontier-command" type="button" data-action="colonize">
+              <span class="command-icon" aria-hidden="true">⌂</span><span class="command-copy"><strong data-i18n="colonizeAction">Establish colony</strong><small data-i18n="colonizeCost">Cost: 5 supplies · requires a discovered world</small></span>
+            </button>
+            <button class="frontier-command" type="button" data-action="train">
+              <span class="command-icon" aria-hidden="true">⌁</span><span class="command-copy"><strong data-i18n="trainAction">Train crew</strong><small data-i18n="trainCost">Cost: 4 supplies · improves combat power</small></span>
+            </button>
+            <button class="frontier-command" type="button" data-action="fight">
+              <span class="command-icon" aria-hidden="true">⚔</span><span class="command-copy"><strong data-i18n="fightAction">Engage swarm</strong><small data-i18n="fightCost">Risky combat · victory lowers pressure</small></span>
+            </button>
+            <button class="frontier-command" type="button" data-action="hide">
+              <span class="command-icon" aria-hidden="true">◌</span><span class="command-copy"><strong data-i18n="hideAction">Go dark</strong><small data-i18n="hideCost">Cost: 1 supply · lower exposure and pressure</small></span>
+            </button>
+          </div>
+          <div class="frontier-command-utility">
+            <button id="new-campaign" class="frontier-reset-command" type="button"><span aria-hidden="true">↻</span><span data-i18n="newCampaign">Restart campaign</span></button>
+            <button id="language-button" class="frontier-reset-command frontier-language-command" type="button" aria-label="Change language">中文</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="frontier-log-panel">
+        <div class="frontier-log-heading"><h3 data-i18n="logTitle">Campaign log</h3><span id="save-status" role="status" data-i18n="autoSaved">Auto-saved in this browser</span></div>
+        <ol id="campaign-log" class="frontier-log" aria-live="polite"></ol>
+      </div>
+      <p id="campaign-outcome" class="frontier-outcome" aria-live="polite" hidden></p>
+    </section>
+
+    <section class="solar-panel" aria-labelledby="loop-title">
+      <p class="eyebrow" data-i18n="loopEyebrow">THE GAME LOOP</p>
+      <h2 id="loop-title" data-i18n="loopTitle">Explore. Develop. Survive.</h2>
+      <p class="section-description" data-i18n="loopDescription">Scout planets for supplies, recruit and train specialists, establish outposts, then decide whether to fight, evade, or stay quiet. Each turn asks you to balance immediate survival against the risks of becoming more visible.</p>
+    </section>
+
+    <section class="solar-panel" aria-labelledby="systems-title">
+      <p class="eyebrow" data-i18n="systemsEyebrow">THREE CONNECTED SYSTEMS</p>
+      <h2 id="systems-title" data-i18n="systemsTitle">Your choices reshape the frontier</h2>
+      <div class="tide-types">
+        <article>
+          <h3 data-i18n="growthTitle">Crew growth</h3>
+          <p data-i18n="growthDescription">Develop your officers and specialists to unlock new ways to explore, negotiate, and survive encounters.</p>
+        </article>
+        <article>
+          <h3 data-i18n="swarmTitle">An evolving swarm</h3>
+          <p data-i18n="swarmDescription">The insect threat responds to repeated tactics, pushing you to adapt instead of relying on one winning strategy.</p>
+        </article>
+        <article>
+          <h3 data-i18n="signalTitle">The signal dilemma</h3>
+          <p data-i18n="signalDescription">Expansion gives you more resources and options, but your growing footprint raises the chance that others will find you.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="solar-panel" aria-labelledby="status-title">
+      <p class="eyebrow" data-i18n="statusEyebrow">DEVELOPMENT STATUS</p>
+      <h2 id="status-title" data-i18n="statusTitle">Prototype notes</h2>
+      <p class="section-description" data-i18n="statusDescription">This first playable build is a compact strategy prototype. Campaign progress is saved automatically in this browser.</p>
+    </section>
+  </main>
+</body>
+</html>
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09111f">
+  <title>Binary &amp; Triple Star Systems</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="analytics.js" defer></script>
+  <script src="binary-triple-system.js" defer></script>
+</head>
+<body class="binary-page">
+  <main class="binary-main">
+    <div class="top-bar">
+      <div>
+        <h1 data-i18n="title">Binary &amp; Triple Star Systems</h1>
+        <p data-i18n="subtitle">Explore how multiple stars move under their mutual gravity.</p>
+      </div>
+      <div class="top-actions">
+        <a class="back-home" href="index.html" data-i18n="home">← All modules</a>
+        <button id="language-button" type="button" aria-label="Change language">中文</button>
+      </div>
+    </div>
+
+    <section class="binary-intro">
+      <p class="eyebrow" data-i18n="eyebrow">GRAVITY IN A STELLAR FAMILY</p>
+      <h2 data-i18n="introTitle">Every star moves — around a shared center of mass</h2>
+      <p data-i18n="intro">Choose a two-star or three-star system, then watch gravity shape its paths. In a binary, both stars orbit their barycenter; in a triple, their combined motion can become far less predictable.</p>
+    </section>
+
+    <section class="solar-panel binary-panel" aria-labelledby="simulation-title">
+      <div class="solar-section-heading">
+        <div>
+          <p class="eyebrow" data-i18n="simulationEyebrow">NEWTONIAN N-BODY PLAYGROUND</p>
+          <h2 id="simulation-title" data-i18n="simulationTitle">Set the stars in motion</h2>
+        </div>
+        <div class="binary-actions">
+          <button id="play-toggle" class="secondary-button" type="button" aria-pressed="false" data-i18n="pause">Pause</button>
+          <button id="reset-button" class="secondary-button" type="button" data-i18n="reset">Reset</button>
+        </div>
+      </div>
+      <p class="section-description" data-i18n="scaleNote">Paths and star sizes are illustrative, not to scale. The simulation uses normalized units.</p>
+
+      <div class="binary-controls">
+        <label class="binary-control">
+          <span data-i18n="systemLabel">System</span>
+          <select id="system-type">
+            <option value="binary" data-i18n="binaryOption">Binary (2 stars)</option>
+            <option value="triple" data-i18n="tripleOption">Triple (3 stars)</option>
+          </select>
+        </label>
+        <label class="binary-control">
+          <span data-i18n="presetLabel">Starting arrangement</span>
+          <select id="system-preset"></select>
+        </label>
+        <label class="binary-control binary-speed-control" for="speed-control">
+          <span><span data-i18n="speedLabel">Simulation speed</span>: <output id="speed-value" for="speed-control">1.0×</output></span>
+          <input id="speed-control" type="range" min="0.25" max="2" value="1" step="0.25">
+        </label>
+      </div>
+
+      <label class="gravity-vector-toggle" for="show-gravity-vectors">
+        <input id="show-gravity-vectors" type="checkbox" checked>
+        <span>
+          <strong data-i18n="gravityVectorsLabel">Show gravitational acceleration</strong>
+          <small data-i18n="gravityVectorsNote">Arrows show each star's net acceleration caused by the other stars; they do not change the simulation.</small>
+        </span>
+      </label>
+
+      <section class="mass-control-panel" aria-labelledby="mass-control-title">
+        <div class="mass-control-heading">
+          <div>
+            <h3 id="mass-control-title" data-i18n="massControlTitle">Adjust star masses</h3>
+            <p data-i18n="massControlNote">Change a mass while the simulation runs to see the gravitational paths respond. Reset restores the preset masses.</p>
+          </div>
+          <span data-i18n="massUnitNote">Normalized mass · G = 1</span>
+        </div>
+        <div id="mass-controls" class="mass-controls"></div>
+      </section>
+
+      <div class="binary-visual">
+        <canvas id="star-canvas" width="900" height="540" role="img" aria-labelledby="simulation-title" aria-describedby="canvas-description"></canvas>
+        <p id="canvas-description" class="visually-hidden" aria-live="polite">Two stars orbit their shared center of mass.</p>
+      </div>
+
+      <div id="star-legend" class="star-legend" data-i18n-aria-label="starLegendLabel" aria-label="Stars in this system"></div>
+      <dl class="binary-stats">
+        <div><dt data-i18n="elapsedLabel">Simulation time</dt><dd id="elapsed-time">0.00</dd></div>
+        <div><dt data-i18n="massLabel">Total mass</dt><dd id="total-mass">2.00</dd></div>
+        <div><dt data-i18n="barycenterLabel">Center of mass</dt><dd data-i18n="barycenterValue">Shown as a cross</dd></div>
+      </dl>
+    </section>
+
+    <section class="solar-panel binary-explanation">
+      <p class="eyebrow" data-i18n="ideaEyebrow">THE KEY IDEA</p>
+      <h2 data-i18n="ideaTitle">The barycenter is the system's balance point</h2>
+      <p data-i18n="ideaText">Gravity pulls every star toward every other star. Their motions respond to the whole group, so even the more massive star moves around the shared center of mass. With three stars, small differences in starting conditions can lead to very different paths.</p>
+      <details class="model-note">
+        <summary data-i18n="modelTitle">About this model</summary>
+        <p data-i18n="modelText">This educational animation integrates Newton's law of gravity for point masses using a fourth-order Runge–Kutta method. Distances, masses, and time are in normalized units; the presets illustrate orbital patterns, not specific observed stars. Real systems can be affected by additional bodies, stellar size, and relativistic effects. The three-body problem has no general closed-form solution.</p>
+      </details>
+    </section>
+    <footer class="solar-footer"><span class="image-credit" data-i18n="footerNote">Educational simulation — not an ephemeris or a long-term stability prediction.</span></footer>
+  </main>
+</body>
+</html>
+

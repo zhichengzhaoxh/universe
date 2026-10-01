@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -487,6 +486,291 @@ output {
   color: #c1d2e3;
   font-size: 14px;
   line-height: 1.7;
+}
+
+.binary-page {
+  background-image:
+    radial-gradient(ellipse at 50% 18%, rgba(32, 60, 93, 0.42), transparent 55%),
+    linear-gradient(180deg, rgba(5, 11, 24, 0.84), rgba(5, 11, 24, 0.94)),
+    url("images/hubble-extreme-deep-field.jpg");
+  background-position: center top;
+}
+
+.binary-main {
+  width: min(1080px, 92%);
+  margin: 36px auto;
+}
+
+.binary-intro {
+  max-width: 820px;
+  margin: 34px 0 24px;
+  line-height: 1.7;
+}
+
+.binary-intro h2,
+.binary-explanation h2 {
+  margin: 0;
+  color: #eef5ff;
+  font-size: clamp(24px, 4vw, 34px);
+}
+
+.binary-intro > p:last-child,
+.binary-explanation > p:not(.eyebrow) {
+  color: #b7c9dc;
+  line-height: 1.75;
+}
+
+.binary-panel,
+.binary-explanation {
+  margin-top: 18px;
+  padding: 26px;
+  border: 1px solid rgba(124, 196, 255, 0.2);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(18, 34, 56, 0.88), rgba(9, 20, 35, 0.9));
+}
+
+.binary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.binary-actions .secondary-button {
+  white-space: nowrap;
+}
+
+.binary-controls {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) minmax(220px, 1.4fr) minmax(180px, 1fr);
+  gap: 14px;
+  margin: 22px 0 16px;
+}
+
+.binary-control {
+  min-width: 0;
+  gap: 8px;
+  color: #c9d9eb;
+  font-size: 13px;
+}
+
+.binary-control select {
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 30px 9px 11px;
+  border: 1px solid #52718e;
+  border-radius: 7px;
+  background: #122238;
+  color: #eef5ff;
+  font: inherit;
+}
+
+.binary-speed-control input[type="range"] {
+  width: 100%;
+  accent-color: #7cc4ff;
+}
+
+.binary-speed-control output {
+  margin-left: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.gravity-vector-toggle {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 4px 0 16px;
+  color: #c9d9eb;
+  cursor: pointer;
+}
+
+.gravity-vector-toggle input {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  margin: 1px 0 0;
+  accent-color: #7cc4ff;
+}
+
+.gravity-vector-toggle span {
+  display: grid;
+  gap: 4px;
+}
+
+.gravity-vector-toggle strong {
+  color: #dcecff;
+  font-size: 13px;
+}
+
+.gravity-vector-toggle small {
+  color: #91a9c1;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.mass-control-panel {
+  margin: 0 0 18px;
+  padding: 15px;
+  border: 1px solid rgba(137, 176, 211, 0.17);
+  border-radius: 10px;
+  background: rgba(5, 13, 25, 0.34);
+}
+
+.mass-control-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.mass-control-heading h3 {
+  margin: 0;
+  color: #dcecff;
+  font-size: 14px;
+}
+
+.mass-control-heading p {
+  margin: 5px 0 0;
+  color: #91a9c1;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.mass-control-heading > span {
+  flex: 0 0 auto;
+  color: #91a9c1;
+  font-size: 11px;
+}
+
+.mass-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 10px 16px;
+}
+
+.mass-control {
+  min-width: 0;
+  gap: 8px;
+  color: #c9d9eb;
+  font-size: 12px;
+}
+
+.mass-control-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.mass-control-label i {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--star-color);
+  box-shadow: 0 0 8px var(--star-color);
+}
+
+.mass-control output {
+  margin-left: auto;
+  color: #eef5ff;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mass-control input[type="range"] {
+  width: 100%;
+  margin: 0;
+  accent-color: #7cc4ff;
+}
+
+.binary-visual {
+  overflow: hidden;
+  border: 1px solid rgba(119, 157, 193, 0.18);
+  border-radius: 12px;
+  background: radial-gradient(ellipse at center, rgba(32, 62, 92, 0.45), rgba(4, 11, 21, 0.92) 75%);
+}
+
+.binary-visual canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 3;
+  background: transparent;
+  border-radius: 0;
+}
+
+.star-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.star-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border: 1px solid rgba(137, 176, 211, 0.16);
+  border-radius: 999px;
+  color: #c9d9eb;
+  font-size: 12px;
+}
+
+.star-legend-item i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--star-color);
+  box-shadow: 0 0 9px var(--star-color);
+}
+
+.star-legend-item strong {
+  color: #eef5ff;
+  font-variant-numeric: tabular-nums;
+}
+
+.binary-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0 0;
+}
+
+.binary-stats > div {
+  padding: 12px 14px;
+  border: 1px solid rgba(137, 176, 211, 0.14);
+  border-radius: 10px;
+  background: rgba(5, 13, 25, 0.38);
+}
+
+.binary-stats dt {
+  color: #91a9c1;
+  font-size: 12px;
+}
+
+.binary-stats dd {
+  margin: 6px 0 0;
+  color: #eef5ff;
+  font-size: 15px;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.binary-explanation .model-note {
+  margin-top: 18px;
+}
+
+.binary-main .solar-footer {
+  padding-bottom: 32px;
+}
+
+.binary-page button:focus-visible,
+.binary-page select:focus-visible,
+.binary-page input:focus-visible {
+  outline: 2px solid #a4d7ff;
+  outline-offset: 3px;
 }
 
 .tide-status {
@@ -1051,6 +1335,42 @@ output {
 }
 
 @media (max-width: 640px) {
+  .binary-page {
+    background-attachment: scroll;
+  }
+
+  .binary-main {
+    width: min(100% - 28px, 520px);
+    margin-top: 22px;
+  }
+
+  .binary-panel,
+  .binary-explanation {
+    padding: 18px 14px;
+  }
+
+  .binary-controls {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .mass-control-heading {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .mass-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .binary-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .binary-visual canvas {
+    min-height: 240px;
+  }
+
   .solar-page {
     background-attachment: scroll;
   }
@@ -1133,6 +1453,615 @@ output {
 
   .solar-footer {
     flex-direction: column;
+  }
+}
+
+.frontier-game-heading,
+.frontier-log-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.frontier-game-heading h2 {
+  margin: 0;
+  color: #eef5ff;
+  font-size: clamp(22px, 3vw, 29px);
+}
+
+.frontier-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.frontier-stat {
+  display: flex;
+  min-height: 75px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 13px;
+  border: 1px solid rgba(137, 176, 211, 0.18);
+  border-radius: 10px;
+  background: rgba(7, 17, 31, 0.68);
+  color: #9fb4c9;
+  font-size: 12px;
+}
+
+.frontier-stat strong {
+  color: #eef5ff;
+  font-size: 20px;
+}
+
+.frontier-meter-group {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 12px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.frontier-meter-heading {
+  display: contents;
+  color: #b7c9dc;
+  font-size: 13px;
+}
+
+.frontier-meter-heading strong {
+  color: #eef5ff;
+}
+
+.frontier-meter {
+  overflow: hidden;
+  height: 9px;
+  grid-column: 1 / -1;
+  border-radius: 99px;
+  background: #091321;
+}
+
+.frontier-meter span {
+  display: block;
+  width: 12%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #55bd9a, #f0b452, #eb6b62);
+  transition: width 180ms ease;
+}
+
+.frontier-pressure span {
+  background: linear-gradient(90deg, #7cc4ff, #b078e6, #eb6b62);
+}
+
+.frontier-map-panel,
+.frontier-log-panel {
+  padding: 16px;
+  border: 1px solid rgba(137, 176, 211, 0.16);
+  border-radius: 12px;
+  background: rgba(7, 17, 31, 0.55);
+}
+
+.frontier-map-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.frontier-map-heading h3 {
+  margin: 0;
+  color: #eef5ff;
+  font-size: 16px;
+}
+
+.frontier-map-heading > span {
+  color: #9fb4c9;
+  font-size: 12px;
+}
+
+.frontier-map-heading strong {
+  color: #7cc4ff;
+}
+
+.frontier-map-viewport {
+  overflow: hidden;
+  margin-top: 13px;
+  border: 1px solid rgba(124, 196, 255, 0.16);
+  border-radius: 12px;
+  background: #07111f;
+}
+
+.frontier-starmap {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 230px;
+}
+
+.starmap-background {
+  fill: #07111f;
+}
+
+.starmap-stars circle {
+  fill: #cde6ff;
+  opacity: 0.65;
+  animation: star-twinkle 3.8s ease-in-out infinite;
+}
+
+.starmap-stars circle:nth-child(3n) {
+  animation-delay: -1.5s;
+}
+
+.starmap-stars circle:nth-child(2n) {
+  animation-delay: -2.4s;
+}
+
+.starmap-routes path {
+  fill: none;
+  stroke: rgba(124, 196, 255, 0.34);
+  stroke-dasharray: 4 8;
+  stroke-width: 1.5;
+}
+
+.starmap-routes .swarm-route {
+  stroke: rgba(235, 107, 98, 0.62);
+  stroke-dasharray: 3 7;
+  animation: route-drift 7s linear infinite;
+}
+
+.frontier-world-node {
+  cursor: pointer;
+  outline: none;
+}
+
+.world-target-ring {
+  fill: rgba(124, 196, 255, 0.02);
+  stroke: transparent;
+  stroke-width: 2;
+  transition: fill 150ms ease, stroke 150ms ease;
+}
+
+.world-orbit {
+  fill: none;
+  stroke: rgba(160, 192, 220, 0.44);
+  stroke-dasharray: 3 5;
+  stroke-width: 1;
+  animation: orbit-drift 14s linear infinite;
+}
+
+.world-body {
+  stroke: rgba(225, 240, 255, 0.8);
+  stroke-width: 1.5;
+}
+
+.world-ice {
+  fill: #b9d6e8;
+}
+
+.world-rock {
+  fill: #bb8464;
+}
+
+.world-ocean {
+  fill: #337faa;
+}
+
+.world-desert {
+  fill: #d5a958;
+}
+
+.world-detail {
+  fill: none;
+  stroke: rgba(8, 18, 32, 0.6);
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.colony-marker {
+  display: none;
+  fill: #82d9b1;
+  stroke: #07111f;
+  stroke-width: 1.5;
+}
+
+.frontier-world-node.is-colonized .colony-marker {
+  display: block;
+}
+
+.world-map-name,
+.world-map-status {
+  fill: #dcecff;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.07em;
+  pointer-events: none;
+  text-anchor: middle;
+}
+
+.world-map-status {
+  fill: #8fa7bf;
+  font-size: 8px;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+}
+
+.frontier-world-node.is-undiscovered .world-body {
+  filter: grayscale(0.7);
+  opacity: 0.64;
+}
+
+.frontier-world-node.is-selected .world-target-ring,
+.frontier-world-node:hover .world-target-ring,
+.frontier-world-node:focus-visible .world-target-ring {
+  fill: rgba(124, 196, 255, 0.12);
+  stroke: #7cc4ff;
+}
+
+.frontier-world-node.is-colonized .world-target-ring {
+  stroke: #82d9b1;
+}
+
+.map-sun {
+  fill: #ffe7a3;
+  filter: drop-shadow(0 0 8px rgba(242, 177, 88, 0.9));
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sun-pulse 3s ease-in-out infinite;
+}
+
+.fleet-engine-glow {
+  fill: rgba(124, 196, 255, 0.22);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: engine-pulse 450ms ease-in-out infinite alternate;
+}
+
+.map-fleet-ship,
+.map-fleet-tail {
+  pointer-events: none;
+}
+
+.map-fleet-ship {
+  fill: #7cc4ff;
+  filter: drop-shadow(0 0 5px rgba(124, 196, 255, 0.9));
+}
+
+.map-fleet-tail {
+  fill: none;
+  stroke: #b7e4ff;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.starmap-home text,
+.starmap-swarm text {
+  fill: #b7c9dc;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  text-anchor: middle;
+}
+
+.swarm-pulse {
+  fill: rgba(235, 107, 98, 0.06);
+  stroke: rgba(235, 107, 98, 0.34);
+  stroke-width: 1;
+  animation: swarm-pulse 2.8s ease-in-out infinite;
+}
+
+.swarm-core {
+  fill: #d96f71;
+  filter: drop-shadow(0 0 8px rgba(235, 107, 98, 0.55));
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: swarm-turn 18s linear infinite;
+}
+
+.starmap-swarm {
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.25, 1);
+}
+
+.starmap-swarm.is-attacking .swarm-core {
+  fill: #ff9a84;
+  filter: drop-shadow(0 0 16px rgba(255, 104, 92, 0.95));
+}
+
+.target-route {
+  stroke: rgba(124, 196, 255, 0.92) !important;
+  stroke-dasharray: 2 7 !important;
+  animation: route-drift 900ms linear infinite !important;
+}
+
+.swarm-eye {
+  fill: #ffe1b4;
+}
+
+.frontier-map-hint {
+  margin: 10px 0 0;
+  color: #8fa7bf;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.frontier-command-dock {
+  margin-top: 15px;
+  overflow: hidden;
+  border: 1px solid rgba(124, 196, 255, 0.24);
+  border-radius: 11px;
+  background: linear-gradient(145deg, rgba(15, 31, 51, 0.96), rgba(8, 19, 33, 0.97));
+}
+
+.frontier-command-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 13px;
+  border-bottom: 1px solid rgba(137, 176, 211, 0.14);
+  color: #9fb4c9;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.frontier-command-heading strong {
+  color: #7cc4ff;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.frontier-command-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(137, 176, 211, 0.13);
+}
+
+.frontier-command-utility {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 10px;
+  border-top: 1px solid rgba(137, 176, 211, 0.14);
+  background: rgba(7, 17, 31, 0.92);
+}
+
+button.frontier-reset-command {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid rgba(124, 196, 255, 0.24);
+  border-radius: 7px;
+  background: rgba(18, 34, 56, 0.92);
+  color: #b7c9dc;
+  font-size: 12px;
+}
+
+button.frontier-reset-command:hover {
+  border-color: #7cc4ff;
+  background: #17314e;
+  color: #eef5ff;
+}
+
+button.frontier-language-command {
+  min-width: 74px;
+  color: #7cc4ff;
+}
+
+button.frontier-command {
+  display: flex;
+  min-width: 0;
+  min-height: 86px;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 13px 10px;
+  border: 0;
+  border-radius: 0;
+  background: rgba(8, 19, 33, 0.98);
+  color: #eef5ff;
+  text-align: left;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+button.frontier-command:hover:not(:disabled),
+button.frontier-command:focus-visible:not(:disabled) {
+  background: #17314e;
+  outline: 1px solid #7cc4ff;
+  outline-offset: -2px;
+}
+
+button.frontier-command:disabled {
+  background: rgba(8, 19, 33, 0.78);
+  color: #8295a9;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.command-icon {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  place-items: center;
+  border: 1px solid rgba(124, 196, 255, 0.3);
+  border-radius: 7px;
+  color: #7cc4ff;
+  font-size: 17px;
+}
+
+.command-copy {
+  display: grid;
+  min-width: 0;
+  gap: 6px;
+}
+
+.command-copy strong {
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.command-copy small {
+  color: #91a8be;
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+@keyframes swarm-pulse {
+  0%, 100% { opacity: 0.38; }
+  50% { opacity: 1; }
+}
+
+@keyframes route-drift {
+  to { stroke-dashoffset: -40; }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.95; }
+}
+
+@keyframes orbit-drift {
+  to { stroke-dashoffset: -32; }
+}
+
+@keyframes sun-pulse {
+  0%, 100% { opacity: 0.82; }
+  50% { opacity: 1; }
+}
+
+@keyframes engine-pulse {
+  to { opacity: 0.4; transform: scale(1.2); }
+}
+
+@keyframes swarm-turn {
+  to { transform: rotate(360deg); }
+}
+
+.frontier-log-heading h3 {
+  margin: 0;
+  color: #eef5ff;
+  font-size: 16px;
+}
+
+.frontier-world-list,
+.frontier-log {
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 13px 0 0;
+  list-style: none;
+}
+
+.frontier-world-list li {
+  padding: 0;
+}
+
+.frontier-world-select {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 11px;
+  border: 1px solid transparent;
+  background: rgba(124, 196, 255, 0.07);
+  color: #9fb4c9;
+  font-size: 13px;
+  text-align: left;
+}
+
+.frontier-world-select strong {
+  color: #dcecff;
+}
+
+.frontier-world-list .is-undiscovered .frontier-world-select {
+  opacity: 0.62;
+}
+
+.frontier-world-select[aria-pressed="true"],
+.frontier-world-list .is-colonized .frontier-world-select {
+  border-color: rgba(124, 196, 255, 0.48);
+  background: rgba(124, 196, 255, 0.12);
+}
+
+.frontier-world-list .is-colonized .frontier-world-select {
+  border-color: rgba(93, 190, 145, 0.35);
+  background: rgba(93, 190, 145, 0.13);
+}
+
+.frontier-log-heading span {
+  color: #82d9b1;
+  font-size: 12px;
+}
+
+.frontier-log {
+  max-height: 235px;
+  overflow-y: auto;
+}
+
+.frontier-log li {
+  padding: 8px 10px;
+  border-left: 2px solid #4ba3f2;
+  background: rgba(124, 196, 255, 0.06);
+  color: #b7c9dc;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.frontier-outcome {
+  padding: 16px;
+  margin: 16px 0 0;
+  border: 1px solid rgba(235, 107, 98, 0.4);
+  border-radius: 10px;
+  background: rgba(235, 107, 98, 0.1);
+  color: #ffc1b7;
+  font-weight: bold;
+}
+
+.frontier-outcome.is-victory {
+  border-color: rgba(93, 190, 145, 0.45);
+  background: rgba(93, 190, 145, 0.1);
+  color: #a7ebc8;
+}
+
+@media (max-width: 640px) {
+  .frontier-game-heading,
+  .frontier-log-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .frontier-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .frontier-world-list li {
+    min-width: 0;
+  }
+
+  .frontier-map-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .frontier-starmap {
+    min-height: 170px;
+  }
+
+  .frontier-command-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  button.frontier-command {
+    min-height: 76px;
   }
 }
 
@@ -1332,6 +2261,16 @@ a.module-card:focus-visible {
   color: #d8deea;
 }
 
+.frontier-icon {
+  background: rgba(178, 145, 255, 0.14);
+  color: #c1a9ff;
+}
+
+.binary-icon {
+  background: rgba(124, 196, 255, 0.14);
+  color: #9ed8ff;
+}
+
 .module-status {
   font-size: 11px;
   font-weight: bold;
@@ -1429,4 +2368,517 @@ a.module-card:focus-visible {
     align-self: stretch;
     justify-content: space-between;
   }
+}
+
+/* Original handheld LCD RPG presentation for Silent Frontier. */
+body.frontier-page {
+  background: radial-gradient(ellipse at top, #28402c 0, #142419 52%, #0b130d 100%);
+  background-attachment: fixed;
+  color: #d4e5b2;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.frontier-page .frontier-console {
+  width: min(900px, calc(100% - 28px));
+  margin: 18px auto 30px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.frontier-page .top-bar h1 {
+  color: #d8e8b8;
+  font-family: inherit;
+  font-size: clamp(22px, 4vw, 34px);
+  letter-spacing: 0.06em;
+  text-shadow: 2px 2px 0 #203626;
+}
+
+.frontier-page .top-bar p,
+.frontier-page .solar-intro,
+.frontier-page .solar-intro p {
+  color: #abc293;
+  font-family: inherit;
+  line-height: 1.55;
+}
+
+.frontier-page .back-home {
+  color: #d8e8b8;
+  font-family: inherit;
+}
+
+.frontier-page .solar-intro {
+  max-width: 900px;
+  margin: 16px 0;
+  padding: 12px 14px;
+  border: 2px solid #425d3d;
+  background: #18291c;
+}
+
+.frontier-page .solar-intro h2,
+.frontier-page .frontier-game-heading h2 {
+  color: #e0edc0;
+  font-family: inherit;
+}
+
+.frontier-page .solar-intro .eyebrow,
+.frontier-page .frontier-game .eyebrow {
+  color: #9cbb76;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-game.solar-panel {
+  margin: 12px 0;
+  padding: 12px;
+  border: 4px double #526b43;
+  border-radius: 8px;
+  background: #18291c;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.32), inset 0 0 0 2px #0e1a12;
+  color: #d4e5b2;
+  font-family: inherit;
+}
+
+.frontier-page .section-description {
+  color: #abc293;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-stats {
+  gap: 4px;
+  margin: 12px 0;
+  padding: 7px;
+  border: 2px solid #526b43;
+  background: #adbd8e;
+}
+
+.frontier-page .frontier-stat {
+  min-height: 54px;
+  gap: 4px;
+  padding: 6px;
+  border: 1px solid #78895d;
+  border-radius: 0;
+  background: #c6d3a7;
+  color: #293d29;
+  font-family: inherit;
+  font-size: 11px;
+}
+
+.frontier-page .frontier-stat strong {
+  color: #17291d;
+  font-family: inherit;
+  font-size: 18px;
+}
+
+.frontier-page .frontier-meter-group {
+  gap: 5px 10px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 2px solid #526b43;
+  background: #adbd8e;
+}
+
+.frontier-page .frontier-meter-heading {
+  color: #293d29;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-meter-heading strong {
+  color: #17291d;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-meter {
+  height: 8px;
+  border: 1px solid #78895d;
+  border-radius: 0;
+  background: #87966b;
+}
+
+.frontier-page .frontier-meter span {
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, #294a31 0 8px, #91a86d 8px 10px);
+}
+
+.frontier-page .frontier-pressure span {
+  background: repeating-linear-gradient(90deg, #8c6438 0 8px, #c5a16a 8px 10px);
+}
+
+.frontier-page .frontier-map-panel,
+.frontier-page .frontier-log-panel {
+  padding: 9px;
+  border: 3px double #718257;
+  border-radius: 4px;
+  background: #aebd8f;
+  color: #263a28;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-map-heading h3,
+.frontier-page .frontier-log-heading h3 {
+  color: #203523;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.frontier-page .frontier-map-heading > span,
+.frontier-page .frontier-map-heading strong {
+  color: #34492e;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-map-viewport {
+  width: min(100%, 760px);
+  margin: 8px auto 0;
+  border: 3px solid #4e6540;
+  border-radius: 2px;
+  background: #b9c99a;
+  box-shadow: inset 0 0 18px rgba(34, 55, 32, 0.22);
+}
+
+.frontier-page .frontier-starmap {
+  max-height: 370px;
+  image-rendering: pixelated;
+}
+
+.frontier-page .frontier-starmap .starmap-background {
+  fill: #b9c99a !important;
+}
+
+.frontier-page .frontier-starmap .starmap-stars circle {
+  fill: #506447 !important;
+  opacity: 0.72;
+}
+
+.frontier-page .frontier-starmap .starmap-routes path:not(.target-route):not(.swarm-route) {
+  stroke: #89986f !important;
+  stroke-dasharray: 2 7;
+  stroke-width: 2;
+}
+
+.frontier-page .frontier-starmap .target-route {
+  stroke: #314e38 !important;
+  stroke-width: 3;
+}
+
+.frontier-page .frontier-starmap .swarm-route {
+  stroke: #8b5f3e !important;
+  stroke-width: 2;
+}
+
+.frontier-page .frontier-starmap .world-target-ring {
+  fill: rgba(73, 100, 54, 0.12) !important;
+  stroke: transparent !important;
+}
+
+.frontier-page .frontier-starmap .frontier-world-node.is-selected .world-target-ring,
+.frontier-page .frontier-starmap .frontier-world-node:focus-visible .world-target-ring {
+  fill: rgba(73, 100, 54, 0.26) !important;
+  stroke: #334d35 !important;
+}
+
+.frontier-page .frontier-starmap .world-orbit {
+  stroke: #71855a !important;
+}
+
+.frontier-page .frontier-starmap .world-body {
+  stroke: #eff0c8 !important;
+  stroke-width: 2;
+}
+
+.frontier-page .frontier-starmap .world-ice { fill: #dbe4bf !important; }
+.frontier-page .frontier-starmap .world-rock { fill: #ba8861 !important; }
+.frontier-page .frontier-starmap .world-ocean { fill: #709b83 !important; }
+.frontier-page .frontier-starmap .world-desert { fill: #d4b576 !important; }
+
+.frontier-page .frontier-starmap .world-detail {
+  stroke: #52664a !important;
+}
+
+.frontier-page .frontier-starmap .world-map-name {
+  fill: #203523 !important;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+
+.frontier-page .frontier-starmap .world-map-status {
+  fill: #40563b !important;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.frontier-page .frontier-starmap .map-sun {
+  fill: #e3bc67 !important;
+  stroke: #70552e;
+  stroke-width: 2;
+  filter: none;
+}
+
+.frontier-page .frontier-starmap .map-sun-glow {
+  opacity: 0.34;
+}
+
+.frontier-page .frontier-starmap .fleet-engine-glow {
+  fill: rgba(57, 83, 47, 0.28) !important;
+}
+
+.frontier-page .frontier-starmap .map-fleet-ship {
+  fill: #314e38 !important;
+  filter: none;
+}
+
+.frontier-page .frontier-starmap .map-fleet-tail {
+  stroke: #314e38 !important;
+}
+
+.frontier-page .frontier-starmap .starmap-home text,
+.frontier-page .frontier-starmap .starmap-swarm text {
+  fill: #263a28 !important;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.frontier-page .frontier-starmap .swarm-pulse {
+  fill: rgba(139, 95, 62, 0.16) !important;
+  stroke: #8b5f3e !important;
+}
+
+.frontier-page .frontier-starmap .swarm-core {
+  fill: #806342 !important;
+  filter: none;
+}
+
+.frontier-page .frontier-starmap .swarm-eye {
+  fill: #e6d79d !important;
+}
+
+.frontier-page .frontier-map-hint {
+  color: #34492e;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-world-select {
+  border-color: #8b9b6f;
+  border-radius: 0;
+  background: #c3d0a3;
+  color: #35472f;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-world-select strong {
+  color: #1f3325;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-world-select[aria-pressed="true"] {
+  border-color: #344d35;
+  background: #d0d9b4;
+  box-shadow: inset 3px 0 #344d35;
+}
+
+.frontier-page .frontier-command-dock {
+  margin-top: 9px;
+  border: 3px double #718257;
+  border-radius: 3px;
+  background: #18291c;
+}
+
+.frontier-page .frontier-command-heading {
+  border-color: #718257;
+  background: #233a29;
+  color: #c4d4a1;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-command-heading strong {
+  color: #e1edbf;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-command-grid {
+  gap: 0;
+  background: #718257;
+}
+
+.frontier-page button.frontier-command {
+  min-height: 68px;
+  border: 1px solid #829267;
+  background: #b9c99a;
+  color: #233626;
+  font-family: inherit;
+}
+
+.frontier-page button.frontier-command:hover:not(:disabled),
+.frontier-page button.frontier-command:focus-visible:not(:disabled) {
+  background: #d3dfb3;
+  outline-color: #334d35;
+}
+
+.frontier-page button.frontier-command:disabled {
+  background: #919f75;
+  color: #596848;
+  opacity: 0.8;
+}
+
+.frontier-page .command-icon {
+  border-color: #72845c;
+  border-radius: 2px;
+  color: #34492e;
+  font-family: inherit;
+}
+
+.frontier-page .command-copy strong {
+  color: #1f3325;
+  font-family: inherit;
+}
+
+.frontier-page .command-copy small {
+  color: #40563b;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-command-utility {
+  border-color: #718257;
+  background: #233a29;
+}
+
+.frontier-page button.frontier-reset-command {
+  border-color: #829267;
+  border-radius: 2px;
+  background: #b9c99a;
+  color: #253a28;
+  font-family: inherit;
+}
+
+.frontier-page button.frontier-reset-command:hover {
+  background: #d3dfb3;
+  color: #17291d;
+}
+
+.frontier-page .frontier-log li {
+  border-color: #526b43;
+  background: #c6d3a7;
+  color: #263a28;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-log-heading span {
+  color: #40563b;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-outcome {
+  border-color: #8b5f3e;
+  border-radius: 2px;
+  background: #d7c59c;
+  color: #4a3823;
+  font-family: inherit;
+}
+
+.frontier-page .frontier-outcome.is-victory {
+  border-color: #536b44;
+  background: #cfdbac;
+  color: #263a28;
+}
+
+.frontier-page .frontier-console > .solar-panel:not(.frontier-game) {
+  padding: 12px;
+  border: 2px solid #425d3d;
+  border-radius: 3px;
+  background: #18291c;
+}
+
+@media (max-width: 640px) {
+  .frontier-page .frontier-console {
+    width: calc(100% - 20px);
+    margin-top: 10px;
+  }
+
+  .frontier-page .frontier-game.solar-panel {
+    padding: 8px;
+  }
+
+  .frontier-page .frontier-map-viewport {
+    width: 100%;
+  }
+
+  .frontier-page .frontier-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .frontier-page .frontier-command-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.frontier-password-screen {
+  display: grid;
+  min-height: 78vh;
+  align-items: center;
+}
+
+.frontier-password-panel {
+  width: min(440px, 100%);
+  margin: 0 auto;
+}
+
+.frontier-password-panel h1 {
+  margin: 0 0 12px;
+  color: #eef5ff;
+  font-size: clamp(26px, 5vw, 36px);
+}
+
+.frontier-password-panel form {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.frontier-password-panel label {
+  color: #c9d9eb;
+}
+
+.frontier-password-panel input {
+  width: 100%;
+  letter-spacing: 0.3em;
+}
+
+.frontier-password-error {
+  margin: 0;
+  color: #ff9e9e;
+}
+
+.frontier-password-panel > button {
+  margin-top: 14px;
+}
+
+.frontier-password-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.frontier-password-actions > button {
+  margin-top: 0;
+}
+
+.frontier-password-back {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  padding: 9px 14px;
+  border: 1px solid #526d89;
+  border-radius: 6px;
+  background: rgba(18, 34, 56, 0.82);
+  color: #e2effc;
+  text-decoration: none;
+}
+
+.frontier-password-back:hover,
+.frontier-password-back:focus-visible {
+  border-color: #7cc4ff;
+  background: #1b3551;
+  outline: none;
+}
+
+#password-gate[hidden],
+#frontier-content[hidden] {
+  display: none !important;
 }
